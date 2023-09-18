@@ -1,33 +1,54 @@
 import _ from 'lodash';
+import './style.css'
+
+const content = document.querySelector('#content')
 
 function homePage () {
   const header = document.createElement('header')
+  content.appendChild(header)
+
+  const headerContent = document.createElement('div')
+  headerContent.setAttribute('id', 'headercontent')
+  header.appendChild(headerContent)
+
   const todotitle = document.createElement('div')
   todotitle.setAttribute('id', 'todotitle')
-  todotitle.innerText = 'To-do-list'
-  header.appendChild('todotitle')
+  todotitle.innerText = 'What to do'
+  headerContent.appendChild(todotitle)
 
   const nav = document.createElement('nav')
+  content.appendChild(nav)
+
+  const navContent = document.createElement('div')
+  navContent.setAttribute('id', 'navcontent')
+  nav.appendChild(navContent)
 
   const todayButton = document.createElement('button')
   todayButton.setAttribute('id', 'todaybutton')
+  todayButton.setAttribute('class', 'navsizing')
   todayButton.innerText = 'Today'
-  nav.appendChild(todayButton)
+  navContent.appendChild(todayButton)
 
   const weekButton = document.createElement('button')
   weekButton.setAttribute('id', 'weekbutton')
+  weekButton.setAttribute('class', 'navsizing')
   weekButton.innerText = 'This Week'
-  nav.appendChild(weekButton)
+  navContent.appendChild(weekButton)
 
-  const projectButton = document.createElement('button')
-  projectButton.setAttribute('id', 'projectbutton')
-  projectButton.innerText = 'Projects'
-  nav.appendChild(projectButton)
+  const projectNavText = document.createElement('div')
+  projectNavText.setAttribute('id', 'projectnavtext')
+  projectNavText.innerText = 'Projects'
+  navContent.appendChild(projectNavText)
 
   const newProjectButton = document.createElement('button')
   newProjectButton.setAttribute('id', 'newprojectbutton')
+  newProjectButton.setAttribute('class', 'navsizing')
   newProjectButton.innerText = 'Add Project'
-  nav.appendChild(newProjectButton)
+  navContent.appendChild(newProjectButton)
+
+  const mainPart = document.createElement('div')
+  mainPart.setAttribute('id', 'mainpart')
+  content.appendChild(mainPart)
 }
 
 homePage()
