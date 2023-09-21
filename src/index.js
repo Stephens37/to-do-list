@@ -1,5 +1,8 @@
 import _ from 'lodash';
 import './style.css'
+import { projectForm } from './logic.js'
+
+projectForm()
 
 const content = document.querySelector('#content')
 

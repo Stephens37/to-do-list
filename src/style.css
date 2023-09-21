@@ -82,3 +82,16 @@ nav {
   grid-row: 2 / span 1;
   grid-column: 2 / span 1;
 }
+
+#project_form {
+  display: none;
+  position: fixed;
+  justify-items: center;
+  align-items: center;
+  height: 200px;
+  width: 300px;
+  z-index: 6;
+  border-color: black;
+  border-width: 10px;
+  border-radius: 5px;
+}

@@ -3,9 +3,31 @@
   <head>
     <meta charset="utf-8">
     <title>To-Do List</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"><script defer src="/index.js" type="module"></script><script defer src="/main.js"></script></head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"><script defer src="/index.js" type="module"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <script defer src="/main.js"></script></head>
   <style src='style.css'></style>
   <body>
-      <div id="content"></div>
+      <div id="content">
+        <form action="javascript:," id='project_form'>
+          <button id="close" type="button">Cancel</button>
+          <label for="title" class="formcategory">TITLE</label>
+          <input type="text" name="title" id="title">
+          <label for="description" class="formcategory">DESCRIPTION</label>
+          <input type="text" name="description" id="description">
+          <label for="priority" class="formcategory">PRIORITY</label>
+          <label for="high" class="formcategory">HIGH</label>
+          <input type="radio" name="high" id="high">
+          <label for="mid" class="formcategory">MID</label>
+          <input type="radio" name="mid" id="mid">
+          <label for="low" class="formcategory">LOW</label>
+          <input type="radio" name="low" id="low">
+          <label for="duedate" class="formcategory">DUE DATE</label>
+          <input type="date" name="duedate" id="duedate">
+          <button type="submit" id="submit" class="formcategory" form="project_form">Submit</button>
+      </form>
+      </div>
   </body>
 </html>
