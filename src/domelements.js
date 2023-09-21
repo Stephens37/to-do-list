@@ -1,28 +1,73 @@
 import _ from 'lodash'
 import './style.css'
 
-const nameForms = document.querySelector('#name_form')
-const navContent = document.querySelector('#navcontent')
-const formTitle = document.querySelector('#title')
+const content = document.querySelector('#content')
 
+export function headerStuff () {
+  const header = document.createElement('header')
+  content.appendChild(header)
 
-function CreateNameForm (title) {
-  this.title = title
+  const headerContent = document.createElement('div')
+  headerContent.setAttribute('id', 'headercontent')
+  header.appendChild(headerContent)
 
-  this.submitName = function () {
-    navContent.appendChild(title)
-  }
+  const todotitle = document.createElement('div')
+  todotitle.setAttribute('id', 'todotitle')
+  todotitle.innerText = 'What to do'
+  headerContent.appendChild(todotitle)
 }
+headerStuff()
 
- export function createProject () {
-  document.addEventListener('DOMContentLoaded', function () {
-    const newNameForm = new CreateNameForm(formTitle)
-    newNameForm.submitName()
-  })
+export function navStuff () {
+  const nav = document.createElement('nav')
+  content.appendChild(nav)
+
+  const navContent = document.createElement('div')
+  navContent.setAttribute('id', 'navcontent')
+  nav.appendChild(navContent)
+
+  const todayButton = document.createElement('button')
+  todayButton.setAttribute('id', 'todaybutton')
+  todayButton.setAttribute('class', 'navsizing')
+  todayButton.innerText = 'Today'
+  navContent.appendChild(todayButton)
+
+  const weekButton = document.createElement('button')
+  weekButton.setAttribute('id', 'weekbutton')
+  weekButton.setAttribute('class', 'navsizing')
+  weekButton.innerText = 'This Week'
+  navContent.appendChild(weekButton)
+
+  const projectNavText = document.createElement('div')
+  projectNavText.setAttribute('id', 'projectnavtext')
+  projectNavText.innerText = 'Projects'
+  navContent.appendChild(projectNavText)
+
+  const newProjectButton = document.createElement('button')
+  newProjectButton.setAttribute('id', 'newprojectbutton')
+  newProjectButton.setAttribute('class', 'navsizing')
+  newProjectButton.innerText = 'Add Project'
+  navContent.appendChild(newProjectButton)
+
+  const nameForm = document.createElement('form')
+  nameForm.setAttribute('id', 'nameform')
+  nameForm.setAttribute('class', 'navsizing')
+  navContent.appendChild(nameForm)
+
+  const createdProjects = document.createElement('div')
+  createdProjects.setAttribute('id', 'createdprojects')
+  createdProjects.setAttribute('class', 'navsizing')
+  navContent.appendChild(createdProjects)
 }
+navStuff()
 
-nameForms.addEventListener('submit', createProject)
-
+export function mainStuff () {
+  const mainPart = document.createElement('div')
+  mainPart.setAttribute('id', 'mainpart')
+  content.appendChild(mainPart)
+  return mainPart
+}
+mainStuff()
 
 /*<form action="javascript:," id='project_form'>
 <button id="close" type="button">Cancel</button>
