@@ -16,7 +16,6 @@ export function headerStuff () {
   todotitle.innerText = 'What to do'
   headerContent.appendChild(todotitle)
 }
-headerStuff()
 
 export function navStuff () {
   const nav = document.createElement('nav')
@@ -58,8 +57,8 @@ export function navStuff () {
   createdProjects.setAttribute('id', 'createdprojects')
   createdProjects.setAttribute('class', 'navsizing')
   navContent.appendChild(createdProjects)
+  return newProjectButton
 }
-navStuff()
 
 export function mainStuff () {
   const mainPart = document.createElement('div')
@@ -67,7 +66,6 @@ export function mainStuff () {
   content.appendChild(mainPart)
   return mainPart
 }
-mainStuff()
 
 /*<form action="javascript:," id='project_form'>
 <button id="close" type="button">Cancel</button>

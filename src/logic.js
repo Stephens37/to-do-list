@@ -6,7 +6,7 @@ headerStuff()
 navStuff()
 mainStuff()
 
-export function FormDisplay(form) {
+export function FormDisplay (form) {
   this.form = form
 
   this.openForm = function () {
@@ -17,9 +17,10 @@ export function FormDisplay(form) {
     form.style.display = 'none'
   }
 }
-
+console.log(FormDisplay)
 /* remember to change to nameform*/
 const nameForm = document.querySelector('#name_form')
+console.log(nameForm)
 
 export function nameFormFunction () {
   function openName () {
@@ -30,30 +31,29 @@ export function nameFormFunction () {
     const nameClose = new FormDisplay(nameForm)
     nameClose.closeForm()
   }
-  document.addEventListener('DOMContentLoaded', function () {
-    const newProjectButton = document.querySelector('#newprojectbutton')
-    const close = document.querySelector('#close')
-    newProjectButton.addEventListener('click', openName)
-    close.addEventListener('click', closeName)
-  })
+  const newProjectButton = document.querySelector('#newprojectbutton')
+  console.log(document.querySelector('#newprojectbutton'))
+  const close = document.querySelector('#close')
+  newProjectButton.addEventListener('click', openName)
+  close.addEventListener('click', closeName)
 }
 
-const navContent = document.querySelector('#navcontent')
-const formTitle = document.querySelector('#title')
+const formTitle = document.querySelector('#title').value
+const createdProjects = document.querySelector('#createdprojects')
 
 function CreateNameForm (title) {
   this.title = title
 
   this.submitName = function () {
-    navContent.appendChild(title)
+    const titleDisplay = document.createElement('button')
+    titleDisplay.innerText = title
+    createdProjects.appendChild(titleDisplay)
   }
 }
 
 export function createProject () {
-  document.addEventListener('DOMContentLoaded', function () {
-    const newNameForm = new CreateNameForm(formTitle)
-    newNameForm.submitName()
-  })
+  const newNameForm = new CreateNameForm(formTitle)
+  newNameForm.submitName()
 }
 
 nameForm.addEventListener('submit', createProject)
