@@ -11,22 +11,25 @@
   <style src='style.css'></style>
   <body>
       <div id="content">
-        <form action="javascript:," id='project_form'>
-          <button id="close" type="button">Cancel</button>
-          <label for="title" class="formcategory">TITLE</label>
+        <form action="javascript:," id="name_form">
+          <button id="close" type="button">X</button>
+          <label for="title" class="namecategory">TITLE</label>
           <input type="text" name="title" id="title">
+          <button type="submit" id="submitname" class="namecategory" form="name_form">SUBMIT</button>
+        </form>
+        <form action="javascript:," id='project_form'>
+          <button id="close" type="button">X</button>
           <label for="description" class="formcategory">DESCRIPTION</label>
           <input type="text" name="description" id="description">
           <label for="priority" class="formcategory">PRIORITY</label>
-          <label for="high" class="formcategory">HIGH</label>
-          <input type="radio" name="high" id="high">
-          <label for="mid" class="formcategory">MID</label>
-          <input type="radio" name="mid" id="mid">
-          <label for="low" class="formcategory">LOW</label>
-          <input type="radio" name="low" id="low">
+          <select name="priority" id="priority" form="project_form">
+            <option value="low">low</option>
+            <option value="mid">Mid</option>
+            <option value="high">HIGH</option>
+          </select>
           <label for="duedate" class="formcategory">DUE DATE</label>
           <input type="date" name="duedate" id="duedate">
-          <button type="submit" id="submit" class="formcategory" form="project_form">Submit</button>
+          <button type="submit" id="submitprojectinfo" class="formcategory" form="project_form">Submit</button>
       </form>
       </div>
   </body>

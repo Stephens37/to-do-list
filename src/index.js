@@ -1,8 +1,9 @@
 import _ from 'lodash';
 import './style.css'
-import { projectForm } from './logic.js'
+import { nameForm } from './logic.js'
+import './domelements.js'
 
-projectForm()
+nameForm()
 
 const content = document.querySelector('#content')
 
@@ -49,9 +50,20 @@ function homePage () {
   newProjectButton.innerText = 'Add Project'
   navContent.appendChild(newProjectButton)
 
+  const nameForm = document.createElement('form')
+  nameForm.setAttribute('id', 'nameform')
+  nameForm.setAttribute('class', 'navsizing')
+  navContent.appendChild(nameForm)
+
+  const createdProjects = document.createElement('div')
+  createdProjects.setAttribute('id', 'createdprojects')
+  createdProjects.setAttribute('class', 'navsizing')
+  navContent.appendChild(createdProjects)
+
   const mainPart = document.createElement('div')
   mainPart.setAttribute('id', 'mainpart')
   content.appendChild(mainPart)
+  return mainPart
 }
 
 homePage()

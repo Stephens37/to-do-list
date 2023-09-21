@@ -1,9 +1,28 @@
 import _ from 'lodash'
 import './style.css'
 
-export function createProjectForm {
-  
+const nameForms = document.querySelector('#name_form')
+const navContent = document.querySelector('#navcontent')
+const formTitle = document.querySelector('#title')
+
+
+function CreateNameForm (title) {
+  this.title = title
+
+  this.submitName = function () {
+    navContent.appendChild(title)
+  }
 }
+
+ export function createProject () {
+  document.addEventListener('DOMContentLoaded', function () {
+    const newNameForm = new CreateNameForm(formTitle)
+    newNameForm.submitName()
+  })
+}
+
+nameForms.addEventListener('submit', createProject)
+
 
 /*<form action="javascript:," id='project_form'>
 <button id="close" type="button">Cancel</button>

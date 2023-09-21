@@ -13,20 +13,22 @@ export function FormDisplay(form) {
   }
 }
 
-export function projectForm () {
-  const projectForm = document.querySelector('#project_form')
-  function openProject () {
-    const projectOpen = new FormDisplay(projectForm)
-    projectOpen.openForm()
+/* remember to change to nameform*/
+
+export function nameForm () {
+  const nameForm = document.querySelector('#name_form')
+  function openName () {
+    const nameOpen = new FormDisplay(nameForm)
+    nameOpen.openForm()
   }
   function closeProject () {
-    const projectClose = new FormDisplay(projectForm)
-    projectClose.closeForm()
+    const nameClose = new FormDisplay(nameForm)
+    nameClose.closeForm()
   }
   document.addEventListener('DOMContentLoaded', function () {
     const newProjectButton = document.querySelector('#newprojectbutton')
     const close = document.querySelector('#close')
-    newProjectButton.addEventListener('click', openProject)
+    newProjectButton.addEventListener('click', openName)
     close.addEventListener('click', closeProject)
   })
 }
