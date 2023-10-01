@@ -1,74 +1,92 @@
 import _, { fromPairs } from 'lodash'
 import './style.css'
-import { navStuff, mainStuff } from './domelements.js'
 
-navStuff()
-mainStuff()
 
-export function FormDisplay (form) {
-  this.form = form
+export default function UI () {
+  function FormDisplay (form) {
+    this.form = form
 
-  this.openForm = function () {
-    form.style.display = 'grid'
+    this.openForm = function () {
+      form.style.display = 'grid'
+    }
+
+    this.closeForm = function () {
+      form.style.display = 'none'
+    }
+  }
+  console.log(FormDisplay)
+
+  function nameFormFunction () {
+    function openName () {
+      const nameOpen = new FormDisplay(nameForm)
+      nameOpen.openForm()
+    }
+    function closeName () {
+      const nameClose = new FormDisplay(nameForm)
+      nameClose.closeForm()
+    }
+    const newProjectButton = document.querySelector('#newprojectbutton')
+    console.log(document.querySelector('#newprojectbutton'))
+    const close = document.querySelector('#close')
+    newProjectButton.addEventListener('click', openName)
+    close.addEventListener('click', closeName)
   }
 
-  this.closeForm = function () {
-    form.style.display = 'none'
+  nameFormFunction()
+
+  const formTitle = document.querySelector('#title').value
+  let newTaskButton = document.querySelector('#newtaskbutton')
+  const createdProjects = document.querySelector('#createdprojects')
+  let mainTitle = document.querySelector('#maintitle')
+
+  const nameForm = document.querySelector('#name_form')
+  const nameSubmit = document.querySelector('#submitname')
+
+  function CreateNameForm (title) {
+    this.title = title
+
+    this.displayProject = function () {
+      mainTitle = title
+      newTaskButton = true
+    }
+
+    this.submitName = function () {
+      const titleDisplay = document.createElement('button')
+      titleDisplay.setAttribute('id', 'titledisplay')
+      titleDisplay.innerText = title
+      createdProjects.appendChild(titleDisplay)
+    }
   }
-}
-console.log(FormDisplay)
 
-export function nameFormFunction () {
-  function openName () {
-    const nameOpen = new FormDisplay(nameForm)
-    nameOpen.openForm()
+  function createProject () {
+    const newNameForm = new CreateNameForm(formTitle)
+    newNameForm.submitName()
   }
-  function closeName () {
-    const nameClose = new FormDisplay(nameForm)
-    nameClose.closeForm()
+
+  function titleDisplayClicked () {
+    const mainProjectView = new CreateNameForm(formTitle)
+    mainProjectView.displayProject()
   }
-  const newProjectButton = document.querySelector('#newprojectbutton')
-  console.log(document.querySelector('#newprojectbutton'))
-  const close = document.querySelector('#close')
-  newProjectButton.addEventListener('click', openName)
-  close.addEventListener('click', closeName)
-}
 
-const formTitle = document.querySelector('#title').value
-let newTaskButton = document.querySelector('#newtaskbutton')
-const createdProjects = document.querySelector('#createdprojects')
-const mainTitle = document.querySelector('#maintitle')
-const mainFormPart = document.querySelector('#mainformpart')
+  nameSubmit.addEventListener('click', createProject)
 
-const nameForm = document.querySelector('#name_form')
-const nameSubmit = document.querySelector('#submitname')
+  const titleDisplay = document.querySelector('#titledisplay')
+  titleDisplay.addEventListener('click', titleDisplayClicked)
 
-function CreateNameForm (title) {
+  const todayButton = document.querySelector('#todaybutton')
+  const weekButton = document.querySelector('#weekbutton')
 
-  this.submitName = function () {
-    const titleDisplay = document.createElement('button')
-    titleDisplay.setAttribute('class', 'titledisplay')
-    titleDisplay.innerText = title
-    titleDisplay.addEventListener('click', displayProject)
-    createdProjects.appendChild(titleDisplay)
+  function todayView () {
+    mainTitle.innerText = 'Today'
+    newTaskButton = false
   }
+
+  todayButton.addEventListener('click', todayView)
+
+  function weekView () {
+    mainTitle.innerText = 'This Week'
+    newTaskButton = false
+  }
+
+  weekButton.addEventListener('click', weekView)
 }
-
-export function createProject () {
-  const newNameForm = new CreateNameForm(formTitle)
-  newNameForm.submitName()
-}
-
-nameSubmit.addEventListener('click', createProject)
-
-function todayView () {
-  mainTitle.innerText = 'Today'
-  newTaskButton = false
-}
-
-function weekView () {
-  mainTitle.innerText = 'This Week'
-  newTaskButton = false
-}
-
-function projectView (, )

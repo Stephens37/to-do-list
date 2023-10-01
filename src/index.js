@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import './style.css'
-import { nameFormFunction } from './logic.js'
-import './domelements.js'
+import UI from './logic.js'
 
-console.log(nameFormFunction())
+document.addEventListener('DOMContentLoaded', UI)
