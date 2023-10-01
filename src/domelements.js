@@ -49,41 +49,23 @@ export function navStuff () {
   navContent.appendChild(newProjectButton)
 
   const nameForm = document.createElement('form')
-  nameForm.setAttribute('id', 'nameform')
-  nameForm.setAttribute('class', 'navsizing')
+  nameForm.setAttribute('id', 'nameformgrid')
   navContent.appendChild(nameForm)
 
   const createdProjects = document.createElement('div')
   createdProjects.setAttribute('id', 'createdprojects')
-  createdProjects.setAttribute('class', 'navsizing')
   navContent.appendChild(createdProjects)
-  return newProjectButton
 }
 
 export function mainStuff () {
   const mainPart = document.createElement('div')
   mainPart.setAttribute('id', 'mainpart')
   content.appendChild(mainPart)
-  return mainPart
+
+  const mainFormPart = document.createElement('div')
+  mainFormPart.setAttribute('id', 'mainformpart')
+  mainPart.appendChild(mainFormPart)
+
+  const newTaskButton = document.createElement('button')
+  newTaskButton.setAttribute('id', 'newtaskbutton')
 }
-
-/*<form action="javascript:," id='project_form'>
-<button id="close" type="button">Cancel</button>
-<label for="title" class="formcategory">TITLE</label>
-<input type="text" name="title" id="title">
-<label for="description" class="formcategory">DESCRIPTION</label>
-<input type="text" name="description" id="description">
-<label for="priority" class="formcategory">PRIORITY</label>
-<label for="high" class="formcategory">HIGH</label>
-<input type="radio" name="high" id="high">
-<label for="mid" class="formcategory">MID</label>
-<input type="radio" name="mid" id="mid">
-<label for="low" class="formcategory">LOW</label>
-<input type="radio" name="low" id="low">
-<label for="duedate" class="formcategory">DUE DATE</label>
-<input type="date" name="duedate" id="duedate">
-<button type="submit" id="submit" class="formcategory" form="project_form">Submit</button>*/
-
-/*
-form.style.display = open
-*/

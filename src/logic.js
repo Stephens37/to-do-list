@@ -1,10 +1,14 @@
-import _ from 'lodash'
+import _, { fromPairs } from 'lodash'
 import './style.css'
 import { headerStuff, navStuff, mainStuff } from './domelements.js'
 
 headerStuff()
 navStuff()
 mainStuff()
+
+const nameFormGrid = document.querySelector('#nameformgrid')
+const nameForm = document.querySelector('#name_form')
+const nameSubmit = document.querySelector('#submitname')
 
 export function FormDisplay (form) {
   this.form = form
@@ -18,14 +22,12 @@ export function FormDisplay (form) {
   }
 }
 console.log(FormDisplay)
-/* remember to change to nameform*/
-const nameForm = document.querySelector('#name_form')
-console.log(nameForm)
 
 export function nameFormFunction () {
   function openName () {
     const nameOpen = new FormDisplay(nameForm)
     nameOpen.openForm()
+    nameFormGrid.appendChild(nameForm)
   }
   function closeName () {
     const nameClose = new FormDisplay(nameForm)
@@ -39,14 +41,36 @@ export function nameFormFunction () {
 }
 
 const formTitle = document.querySelector('#title').value
+const newTaskButton = document.querySelector('#newtaskbutton')
 const createdProjects = document.querySelector('#createdprojects')
+
+const mainFormPart = document.querySelector('#mainformpart')
+
+class Open {
+  constructor (title, task) {
+    this.title = title
+    this.task = task
+  }
+
+  openProject () {
+    mainFormPart.appendChild(this.title)
+    mainFormPart.appendChild(this.task)
+  }
+}
+
+export function displayProject () {
+  const viewProject = new Open(formTitle, newTaskButton)
+  viewProject.openProject()
+}
 
 function CreateNameForm (title) {
   this.title = title
 
   this.submitName = function () {
     const titleDisplay = document.createElement('button')
+    titleDisplay.setAttribute('class', 'titledisplay')
     titleDisplay.innerText = title
+    titleDisplay.addEventListener('click', displayProject)
     createdProjects.appendChild(titleDisplay)
   }
 }
@@ -56,4 +80,4 @@ export function createProject () {
   newNameForm.submitName()
 }
 
-nameForm.addEventListener('submit', createProject)
+nameSubmit.addEventListener('click', createProject)

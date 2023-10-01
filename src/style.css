@@ -40,7 +40,7 @@ nav {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 2fr 6fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 4fr 8fr;
   align-items: space-between;
   background-color: gray;
 }
@@ -83,21 +83,30 @@ nav {
   grid-column: 2 / span 1;
 }
 
+#mainformpart {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 2fr repeat(8, 1fr)
+}
+
+#nameformgrid {
+  padding-left: 0px;
+
+}
+
 #name_form {
   display: none;
-  grid-column: ;
+  grid-row: 5 / span 1;
+  padding-left: 0px;
+}
+
+#createdprojects {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(8, 1fr);
 }
 
 #project_form {
   display: none;
-  grid-column: 2 / span 1;
-  grid-row: 2 / span 1;
-  justify-items: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  z-index: 6;
-  border-color: black;
-  border-width: 10px;
-  border-radius: 5px;
 }
