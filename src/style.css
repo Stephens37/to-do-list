@@ -84,15 +84,13 @@ nav {
 }
 
 #mainformpart {
-  height: 100%;
+  height: 80%;
+  width: 80%;
   display: grid;
+  align-items: center;
+  justify-items: center;
   grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 2fr repeat(8, 1fr)
-}
-
-#nameformgrid {
-  padding-left: 0px;
-
 }
 
 #name_form {

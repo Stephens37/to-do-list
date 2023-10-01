@@ -1,14 +1,9 @@
 import _, { fromPairs } from 'lodash'
 import './style.css'
-import { headerStuff, navStuff, mainStuff } from './domelements.js'
+import { navStuff, mainStuff } from './domelements.js'
 
-headerStuff()
 navStuff()
 mainStuff()
-
-const nameFormGrid = document.querySelector('#nameformgrid')
-const nameForm = document.querySelector('#name_form')
-const nameSubmit = document.querySelector('#submitname')
 
 export function FormDisplay (form) {
   this.form = form
@@ -27,7 +22,6 @@ export function nameFormFunction () {
   function openName () {
     const nameOpen = new FormDisplay(nameForm)
     nameOpen.openForm()
-    nameFormGrid.appendChild(nameForm)
   }
   function closeName () {
     const nameClose = new FormDisplay(nameForm)
@@ -41,30 +35,15 @@ export function nameFormFunction () {
 }
 
 const formTitle = document.querySelector('#title').value
-const newTaskButton = document.querySelector('#newtaskbutton')
+let newTaskButton = document.querySelector('#newtaskbutton')
 const createdProjects = document.querySelector('#createdprojects')
-
+const mainTitle = document.querySelector('#maintitle')
 const mainFormPart = document.querySelector('#mainformpart')
 
-class Open {
-  constructor (title, task) {
-    this.title = title
-    this.task = task
-  }
-
-  openProject () {
-    mainFormPart.appendChild(this.title)
-    mainFormPart.appendChild(this.task)
-  }
-}
-
-export function displayProject () {
-  const viewProject = new Open(formTitle, newTaskButton)
-  viewProject.openProject()
-}
+const nameForm = document.querySelector('#name_form')
+const nameSubmit = document.querySelector('#submitname')
 
 function CreateNameForm (title) {
-  this.title = title
 
   this.submitName = function () {
     const titleDisplay = document.createElement('button')
@@ -81,3 +60,15 @@ export function createProject () {
 }
 
 nameSubmit.addEventListener('click', createProject)
+
+function todayView () {
+  mainTitle.innerText = 'Today'
+  newTaskButton = false
+}
+
+function weekView () {
+  mainTitle.innerText = 'This Week'
+  newTaskButton = false
+}
+
+function projectView (, )
