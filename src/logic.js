@@ -34,10 +34,10 @@ export default function UI () {
 
   nameFormFunction()
 
-  const formTitle = document.querySelector('#title').value
-  let newTaskButton = document.querySelector('#newtaskbutton')
+  let newTaskButton = document.querySelector('#newtask')
   const createdProjects = document.querySelector('#createdprojects')
   let mainTitle = document.querySelector('#maintitle')
+  const mainFormPart = document.querySelector('#mainformpart')
 
   const nameForm = document.querySelector('#name_form')
   const nameSubmit = document.querySelector('#submitname')
@@ -46,8 +46,8 @@ export default function UI () {
     this.title = title
 
     this.displayProject = function () {
-      mainTitle = title
-      newTaskButton = true
+      mainTitle.innerText = title
+      console.log(title)
     }
 
     this.submitName = function () {
@@ -55,23 +55,34 @@ export default function UI () {
       titleDisplay.setAttribute('id', 'titledisplay')
       titleDisplay.innerText = title
       createdProjects.appendChild(titleDisplay)
+      titleDisplay.addEventListener('click', this.displayProject)
     }
   }
 
   function createProject () {
+    const formTitle = document.querySelector('#title').value
     const newNameForm = new CreateNameForm(formTitle)
     newNameForm.submitName()
   }
 
   function titleDisplayClicked () {
+    const formTitle = document.querySelector('#title').value
     const mainProjectView = new CreateNameForm(formTitle)
     mainProjectView.displayProject()
   }
 
   nameSubmit.addEventListener('click', createProject)
 
-  const titleDisplay = document.querySelector('#titledisplay')
-  titleDisplay.addEventListener('click', titleDisplayClicked)
+  function displayFunc () {
+    const titleDisplay = document.querySelector('#titledisplay')
+    titleDisplay.addEventListener('click', titleDisplayClicked)
+  }
+  document.addEventListener('DOMContentLoaded', displayFunc)
+
+  nameForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    nameForm.reset()
+  })
 
   const todayButton = document.querySelector('#todaybutton')
   const weekButton = document.querySelector('#weekbutton')
