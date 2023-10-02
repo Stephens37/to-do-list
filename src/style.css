@@ -40,7 +40,7 @@ nav {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 4fr 8fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 4fr 8fr;
   align-items: space-between;
   background-color: gray;
 }
@@ -66,16 +66,16 @@ nav {
 }
 
 #projectnavtext {
-  grid-row: 3 / span 1;
+  grid-row: 4 / span 1;
   font-size: 30px;
   height: 40px;
-  width: 100%;
   align-self: center;
-  padding-left: 25px;
+  padding-left: 2px;
+
 }
 
 #newprojectbutton {
-  grid-row: 4 / span 1;
+  grid-row: 6 / span 1;
 }
 
 #mainpart {
@@ -95,14 +95,29 @@ nav {
 
 #name_form {
   display: none;
-  grid-row: 5 / span 1;
+  grid-row: 7 / span 1;
   padding-left: 0px;
 }
 
 #createdprojects {
+  grid-row: 8 / span 1;
+}
+
+#createdprojectsgrid {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(8, 1fr);
+}
+
+#maintitle {
+  font-size: 40px;
+}
+
+#newtask {
+  display: none;
+  font-size: 20px;
+  height: 50px;
+  width: 100px;
 }
 
 #project_form {

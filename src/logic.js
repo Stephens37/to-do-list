@@ -34,8 +34,8 @@ export default function UI () {
 
   nameFormFunction()
 
-  let newTaskButton = document.querySelector('#newtask')
-  const createdProjects = document.querySelector('#createdprojects')
+  const newTaskButton = document.querySelector('#newtask')
+  const createdProjects = document.querySelector('#createdprojectsgrid')
   let mainTitle = document.querySelector('#maintitle')
   const mainFormPart = document.querySelector('#mainformpart')
 
@@ -47,6 +47,7 @@ export default function UI () {
 
     this.displayProject = function () {
       mainTitle.innerText = title
+      newTaskButton.style.display = 'block'
       console.log(title)
     }
 
@@ -86,17 +87,18 @@ export default function UI () {
 
   const todayButton = document.querySelector('#todaybutton')
   const weekButton = document.querySelector('#weekbutton')
+  
 
   function todayView () {
     mainTitle.innerText = 'Today'
-    newTaskButton = false
+    newTaskButton.style.display = 'none'
   }
 
   todayButton.addEventListener('click', todayView)
 
   function weekView () {
     mainTitle.innerText = 'This Week'
-    newTaskButton = false
+    newTaskButton.style.display = 'none'
   }
 
   weekButton.addEventListener('click', weekView)
