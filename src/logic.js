@@ -30,7 +30,7 @@ export default function UI () {
     }
     const newProjectButton = document.querySelector('#newprojectbutton')
     console.log(document.querySelector('#newprojectbutton'))
-    const close = document.querySelector('#close')
+    const close = document.querySelector('#closenameform')
     newProjectButton.addEventListener('click', openName)
     close.addEventListener('click', closeName)
   }
@@ -107,12 +107,21 @@ export default function UI () {
   weekButton.addEventListener('click', weekView)
 
   const taskForm = document.querySelector('#task_form')
+  const cancelTask = document.querySelector('#closetaskform')
 
-  function newTaskClicked () {
-    taskForm.style.display = 'grid'
+  function openTask () {
+    const taskOpen = new FormDisplay(taskForm)
+    taskOpen.openForm()
+  }
+  function closetask () {
+    const taskClose = new FormDisplay(taskForm)
+    taskClose.closeForm()
   }
 
-  newTaskButton.addEventListener('click', newTaskClicked)
+  newTaskButton.addEventListener('click', openTask)
+  cancelTask.addEventListener('click', closetask)
+
+
 
   function newTask () {
     const formDescription = document.querySelector('#description')
@@ -123,17 +132,25 @@ export default function UI () {
     domElement.dayDue.innerText = dayResult
     mainFormPart.append(domElement.task)
     domElement.task.style.display = 'grid'
-}
-taskForm.addEventListener('submit', newTask)
+  }
+  taskForm.addEventListener('submit', newTask)
+
   function DeleteTaskFunc (task) {
     this.task = task
     this.deleteTaskDisplay = function () {
       task.style.display = 'none'
-}
-}
+    }
+  }
   function newDTF () {
     const deleteNewTask = new DeleteTaskFunc(domElement.task)
     deleteNewTask.deleteTaskDisplay()
   }
   domElement.deleteTask.addEventListener('click', newDTF)
+
+  function editTaskFunc () {
+    const deleteNewTask = new DeleteTaskFunc(domElement.task)
+    deleteNewTask.deleteTaskDisplay()
+  }
+  domElement.editTask.addEventListener('click', openTask)
+  domElement.editTask.addEventListener('click', editTaskFunc)
 }
