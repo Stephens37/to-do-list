@@ -122,6 +122,18 @@ export default function UI () {
     let dayResult = document.querySelector('#duedate').value
     domElement.dayDue.innerText = dayResult
     mainFormPart.append(domElement.task)
+    domElement.task.style.display = 'grid'
+}
+taskForm.addEventListener('submit', newTask)
+  function DeleteTaskFunc (task) {
+    this.task = task
+    this.deleteTaskDisplay = function () {
+      task.style.display = 'none'
+}
+}
+  function newDTF () {
+    const deleteNewTask = new DeleteTaskFunc(domElement.task)
+    deleteNewTask.deleteTaskDisplay()
   }
-  taskForm.addEventListener('submit', newTask)
+  domElement.deleteTask.addEventListener('click', newDTF)
 }
