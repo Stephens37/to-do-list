@@ -1,6 +1,6 @@
 import _, { fromPairs } from 'lodash'
 import './style.css'
-import './domelements.js'
+import * as domElement from './domelements'
 
 import { format, isValid, parse } from 'date-fns'
 
@@ -115,23 +115,13 @@ export default function UI () {
   newTaskButton.addEventListener('click', newTaskClicked)
 
   function newTask () {
-    const task = require('./domelements.js')
-    const deleteTask = require('./domelements.js')
-    const description = require('./domelements.js')
-    const priority = require('./domelements.js')
-    const dayDue = require('./domelements.js')
-
-    deleteTask.innerText = 'Delete'
     const formDescription = document.querySelector('#description')
-    description.innerText = formDescription
+    domElement.description.innerText = formDescription.innerText
     const priorityOptions = document.querySelector('#priority')
-    priority.innerText = priorityOptions.options[priorityOptions.selectedIndex].text
-    let dayResult = document.querySelector('#duedate')
-    const validDate = parse(dayResult, "dd.MM.yyyy", new Date());
-    console.log(isValid(validDate))
-    const dayFormat = format(new Date(dayResult.Date), 'MM-DD-YY')
-    dayDue.innerText = dayFormat
-    mainFormPart.appendChild(task)
+    domElement.priority.innerText = priorityOptions.options[priorityOptions.selectedIndex].text
+    let dayResult = document.querySelector('#duedate').value
+    domElement.dayDue.innerText = dayResult
+    mainFormPart.append(domElement.task)
   }
   taskForm.addEventListener('submit', newTask)
 }
