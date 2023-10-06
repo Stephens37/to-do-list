@@ -128,7 +128,7 @@ nav {
   grid-column: 1 / span 7;
 }
 
-#taskgrid {
+#newtaskgrid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
