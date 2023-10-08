@@ -124,23 +124,23 @@ export default function UI () {
 
 
   class Task {
-    constructor (deleteTask, description, priority, due, edit, taskGrid) {
+    constructor (deleteTask, description, priority, due, edit) {
       this.deleteTask = deleteTask
       this.description = description
       this.priority = priority
       this.due = due
       this.edit = edit
-      this.taskGrid = taskGrid
     }
-  
+
     sayTask () {
+      this.taskGrid = document.createElement('div')
+      this.taskGrid.setAttribute('class', 'newtaskgrid')
+      this.taskGrid.style.display = 'grid'
       this.taskGrid.append(this.deleteTask, this.description, this.priority, this.due, this.edit)
       domElement.task.appendChild(this.taskGrid)
     }
   }
   function newTask () {
-    const newTaskGrid = document.createElement('div')
-    newTaskGrid.setAttribute('class', 'newTaskGrid')
     const formDescription = document.querySelector('#description')
     domElement.description.innerText = formDescription.innerText
     const priorityOptions = document.querySelector('#priority')
@@ -148,23 +148,16 @@ export default function UI () {
     let dayResult = document.querySelector('#duedate').value
     domElement.dayDue.innerText = dayResult
     mainFormPart.append(domElement.task)
-    newTaskGrid.style.display = 'grid'
-    const createTask = new Task(domElement.deleteTask, domElement.description, domElement.priority, domElement.dayDue, domElement.editTask, newTaskGrid)
+    const createTask = new Task(domElement.deleteTask, domElement.description, domElement.priority, domElement.dayDue, domElement.editTask)
     createTask.sayTask()
   }
   taskForm.addEventListener('submit', newTask)
 
-  function DeleteTaskFunc (task) {
-    this.task = task
-    this.deleteTaskDisplay = function () {
-      task.style.display = 'none'
-    }
+  function deleteTaskFunc () {
+    domElement.task.remove()
   }
-  function newDTF () {
-    const deleteNewTask = new DeleteTaskFunc(domElement.task)
-    deleteNewTask.deleteTaskDisplay()
-  }
-  domElement.deleteTask.addEventListener('click', newDTF)
+  
+  domElement.deleteTask.addEventListener('click', deleteTaskFunc)
 
   function editTaskFunc () {
     const deleteNewTask = new DeleteTaskFunc(domElement.task)
