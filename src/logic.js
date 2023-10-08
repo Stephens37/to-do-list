@@ -1,6 +1,7 @@
 import _, { fromPairs } from 'lodash'
 import './style.css'
 import * as domElement from './domelements'
+import { createElements } from './domelements'
 
 import { format, isValid, parse } from 'date-fns'
 
@@ -121,26 +122,59 @@ export default function UI () {
   newTaskButton.addEventListener('click', openTask)
   cancelTask.addEventListener('click', closetask)
 
-
+  let myTasks = []
 
   class Task {
-    constructor (deleteTask, description, priority, due, edit) {
-      this.deleteTask = deleteTask
+    constructor (description, priority, due) {
       this.description = description
       this.priority = priority
       this.due = due
-      this.edit = edit
     }
 
     sayTask () {
-      this.taskGrid = document.createElement('div')
-      this.taskGrid.setAttribute('class', 'newtaskgrid')
-      this.taskGrid.style.display = 'grid'
-      this.taskGrid.append(this.deleteTask, this.description, this.priority, this.due, this.edit)
-      domElement.task.appendChild(this.taskGrid)
+      myTasks.push(this.description, this.priority, this.due)
     }
   }
+
   function newTask () {
+    const htmlDescription = document.getElementById('description').value
+    const htmlPriority = document.getElementById('priority').value
+    const htmlDue = document.getElementById('duedate').value
+    const task = new Task(htmlDescription, htmlPriority, htmlDue)
+    task.sayTask()
+    createElements()
+    const taskInfo = document.querySelector('#taskinfo')
+    const deleteTask = document.querySelector('#deletetask')
+    const description = document.querySelector('#descriptiongd')
+    const priority = document.querySelector('#prioritygd')
+    const dayDue = document.querySelector('#daydue')
+    const editTask = document.querySelector('#edittask')
+
+    const tableRow = document.createElement('tr')
+    tableRow.setAttribute('class', 'tablerow')
+    taskInfo.append(tableRow)
+
+    tableRow.append(deleteTask)
+    tableRow.append(description)
+    tableRow.append(priority)
+    tableRow.append(dayDue)
+    tableRow.append(editTask)
+
+    function removeTask () {
+      myTasks.splice(this.bookTitle, 3)
+      deleteTask.remove()
+      description.remove()
+      priority.remove()
+      dayDue.remove()
+      editTask.remove()
+    }
+
+    deleteTask.addEventListener('click', removeTask)
+  }
+
+  taskForm.addEventListener('submit', newTask)
+}
+  /*function newTask () {
     const formDescription = document.querySelector('#description')
     domElement.description.innerText = formDescription.innerText
     const priorityOptions = document.querySelector('#priority')
@@ -154,15 +188,12 @@ export default function UI () {
   taskForm.addEventListener('submit', newTask)
 
   function deleteTaskFunc () {
-    domElement.task.remove()
+    const taskGrid = document.querySelector('.newtaskgrid')
+    taskGrid.remove()
   }
   
   domElement.deleteTask.addEventListener('click', deleteTaskFunc)
 
-  function editTaskFunc () {
-    const deleteNewTask = new DeleteTaskFunc(domElement.task)
-    deleteNewTask.deleteTaskDisplay()
-  }
   domElement.editTask.addEventListener('click', openTask)
-  domElement.editTask.addEventListener('click', editTaskFunc)
-}
+  domElement.editTask.addEventListener('click', deleteTaskFunc)
+}*/
