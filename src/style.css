@@ -126,17 +126,25 @@ nav {
   display: none;
 }
 
-#task {
+#taskinfo {
   grid-column: 1 / span 3;
   grid-row: 2 / span 1;
   height: 100%;
   width: 100%;
 }
 
-.newtaskgrid {
+#headrow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+}
+
+.tablerow {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr;
-  height: 300px;
+  height: 150px;
   width: 100%;
+  justify-items: center;
 }
+

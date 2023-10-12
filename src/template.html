@@ -53,10 +53,25 @@
               <label for="duedate" class="formcategory">DUE DATE</label>
               <input type="date" name="duedate" id="duedate">
               <button type="submit" id="submitprojectinfo" class="formcategory" form="task_form">Submit</button>
-              <script defer src="/index.js" type="module"></script>
             </form>
+
+            <table id="taskinfo">
+              <thead>
+                  <tr id="headrow">
+                      <td id="deletedelete" class="headcells">Remove Task</td>
+                      <td id="readread" class="headcells">Description</td>
+                      <td id="titletitle" class="headcells">Priority</td>
+                      <td id="authortitle" class="headcells">Due Date</td>
+                      <td id="pagestitle" class="headcells">Edit Task</td>
+                  </tr>
+              </thead>
+              <tbody id="tbody">
+      
+              </tbody>
+          </table>
           </div>
         </div>
       </div>
+      <script defer src="/index.js" type="module"></script>
   </body>
 </html>
