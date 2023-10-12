@@ -133,12 +133,15 @@ nav {
   width: 100%;
 }
 
+<<<<<<< HEAD
 #headrow {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   justify-items: center;
 }
 
+=======
+>>>>>>> 04f3179ea5c12511624ee52b5758344b4c4a0c2f
 .tablerow {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

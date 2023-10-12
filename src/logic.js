@@ -1,6 +1,7 @@
 import _, { fromPairs } from 'lodash'
 import './style.css'
 import * as domElement from './domelements'
+import { createElements } from './domelements'
 
 import { format, isValid, parse } from 'date-fns'
 
@@ -140,6 +141,7 @@ export default function UI () {
     const htmlDue = document.getElementById('duedate').value
     const task = new Task(htmlDescription, htmlPriority, htmlDue)
     task.sayTask()
+<<<<<<< HEAD
     const tbody = document.querySelector('#tbody')
     const tableRow = document.createElement('tr')
     tableRow.setAttribute('class', 'tablerow')
@@ -161,6 +163,24 @@ export default function UI () {
     tableRow.append(dayDue)
 
     const editTask = domElement.editTask
+=======
+    createElements()
+    const taskInfo = document.querySelector('#taskinfo')
+    const deleteTask = document.querySelector('#deletetask')
+    const description = document.querySelector('#descriptiongd')
+    const priority = document.querySelector('#prioritygd')
+    const dayDue = document.querySelector('#daydue')
+    const editTask = document.querySelector('#edittask')
+
+    const tableRow = document.createElement('tr')
+    tableRow.setAttribute('class', 'tablerow')
+    taskInfo.append(tableRow)
+
+    tableRow.append(deleteTask)
+    tableRow.append(description)
+    tableRow.append(priority)
+    tableRow.append(dayDue)
+>>>>>>> 04f3179ea5c12511624ee52b5758344b4c4a0c2f
     tableRow.append(editTask)
 
     function removeTask () {
@@ -172,7 +192,11 @@ export default function UI () {
       editTask.remove()
     }
 
+<<<<<<< HEAD
     domElement.deleteTask.addEventListener('click', removeTask)
+=======
+    deleteTask.addEventListener('click', removeTask)
+>>>>>>> 04f3179ea5c12511624ee52b5758344b4c4a0c2f
   }
 
   taskForm.addEventListener('submit', newTask)
