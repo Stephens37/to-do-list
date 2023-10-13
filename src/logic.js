@@ -1,7 +1,7 @@
 import _, { fromPairs } from 'lodash'
 import './style.css'
 import * as domElement from './domelements'
-import { createElements } from './domelements'
+import { taskElements } from './domelements'
 
 import { format, isValid, parse } from 'date-fns'
 
@@ -121,7 +121,7 @@ export default function UI () {
   newTaskButton.addEventListener('click', openTask)
   cancelTask.addEventListener('click', closetask)
 
-  let myTasks = []
+
 
   class Task {
     constructor (description, priority, due) {
@@ -131,7 +131,7 @@ export default function UI () {
     }
 
     sayTask () {
-      myTasks.push(this.description, this.priority, this.due)
+      console.log(this.description, this.priority, this.due)
     }
   }
 
@@ -141,62 +141,8 @@ export default function UI () {
     const htmlDue = document.getElementById('duedate').value
     const task = new Task(htmlDescription, htmlPriority, htmlDue)
     task.sayTask()
-<<<<<<< HEAD
-    const tbody = document.querySelector('#tbody')
-    const tableRow = document.createElement('tr')
-    tableRow.setAttribute('class', 'tablerow')
-    tbody.append(tableRow)
-    const deleteTask = domElement.deleteTask
-    console.log(deleteTask)
-    tableRow.append(deleteTask)
 
-    const description = domElement.description
-    description.innerText = htmlDescription.value
-    tableRow.append(description)
-
-    const priority = domElement.priority
-    console.log(priority.innerText)
-    tableRow.append(priority)
-
-    const dayDue = domElement.dayDue
-    dayDue.innerText = htmlDue.value
-    tableRow.append(dayDue)
-
-    const editTask = domElement.editTask
-=======
-    createElements()
-    const taskInfo = document.querySelector('#taskinfo')
-    const deleteTask = document.querySelector('#deletetask')
-    const description = document.querySelector('#descriptiongd')
-    const priority = document.querySelector('#prioritygd')
-    const dayDue = document.querySelector('#daydue')
-    const editTask = document.querySelector('#edittask')
-
-    const tableRow = document.createElement('tr')
-    tableRow.setAttribute('class', 'tablerow')
-    taskInfo.append(tableRow)
-
-    tableRow.append(deleteTask)
-    tableRow.append(description)
-    tableRow.append(priority)
-    tableRow.append(dayDue)
->>>>>>> 04f3179ea5c12511624ee52b5758344b4c4a0c2f
-    tableRow.append(editTask)
-
-    function removeTask () {
-      myTasks.splice(this.bookTitle, 3)
-      deleteTask.remove()
-      description.remove()
-      priority.remove()
-      dayDue.remove()
-      editTask.remove()
-    }
-
-<<<<<<< HEAD
-    domElement.deleteTask.addEventListener('click', removeTask)
-=======
-    deleteTask.addEventListener('click', removeTask)
->>>>>>> 04f3179ea5c12511624ee52b5758344b4c4a0c2f
+    taskElements(htmlDescription, htmlPriority, htmlDue)
   }
 
   taskForm.addEventListener('submit', newTask)
