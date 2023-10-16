@@ -89,23 +89,6 @@ export default function UI () {
     nameForm.reset()
   })
 
-  const todayButton = document.querySelector('#todaybutton')
-  const weekButton = document.querySelector('#weekbutton')
-
-  function todayView () {
-    mainTitle.innerText = 'Today'
-    newTaskButton.style.display = 'none'
-  }
-
-  todayButton.addEventListener('click', todayView)
-
-  function weekView () {
-    mainTitle.innerText = 'This Week'
-    newTaskButton.style.display = 'none'
-  }
-
-  weekButton.addEventListener('click', weekView)
-
   const taskForm = document.querySelector('#task_form')
   const cancelTask = document.querySelector('#closetaskform')
 
@@ -146,27 +129,23 @@ export default function UI () {
   }
 
   taskForm.addEventListener('submit', newTask)
+
+  const todayButton = document.querySelector('#todaybutton')
+  const weekButton = document.querySelector('#weekbutton')
+
+  function todayTasks () {
+    mainTitle.innerText = 'Today'
+    document.querySelector('#newtaskbutton').style.display = 'none'
+    document.querySelector('#taskinfo').style.display = 'none'
+  }
+
+  todayButton.addEventListener('click', todayTasks)
+
+  function weekView () {
+    mainTitle.innerText = 'This Week'
+    document.querySelector('#newtaskbutton').style.display = 'none'
+    document.querySelector('#taskinfo').style.display = 'none'
+  }
+
+  weekButton.addEventListener('click', weekView)
 }
-  /*function newTask () {
-    const formDescription = document.querySelector('#description')
-    domElement.description.innerText = formDescription.innerText
-    const priorityOptions = document.querySelector('#priority')
-    domElement.priority.innerText = priorityOptions.options[priorityOptions.selectedIndex].text
-    let dayResult = document.querySelector('#duedate').value
-    domElement.dayDue.innerText = dayResult
-    mainFormPart.append(domElement.task)
-    const createTask = new Task(domElement.deleteTask, domElement.description, domElement.priority, domElement.dayDue, domElement.editTask)
-    createTask.sayTask()
-  }
-  taskForm.addEventListener('submit', newTask)
-
-  function deleteTaskFunc () {
-    const taskGrid = document.querySelector('.newtaskgrid')
-    taskGrid.remove()
-  }
-  
-  domElement.deleteTask.addEventListener('click', deleteTaskFunc)
-
-  domElement.editTask.addEventListener('click', openTask)
-  domElement.editTask.addEventListener('click', deleteTaskFunc)
-}*/

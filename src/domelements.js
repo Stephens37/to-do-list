@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import './style.css'
+import { isEqual, format } from 'date-fns'
 
 export function taskElements (description, priority, dayDue) { 
   const deleteTask = document.createElement('button')
@@ -8,6 +9,7 @@ export function taskElements (description, priority, dayDue) {
 
   description = document.createElement('td')
   description.setAttribute('class', 'descriptiongd')
+  description.innerText = document.querySelector('#description').value
 
   priority = document.createElement('td')
   priority.setAttribute('class', 'prioritygd')
@@ -54,4 +56,4 @@ export function taskElements (description, priority, dayDue) {
 
 
 
-/*turn the creation of elements into a function so that they are not only being created once*/
+/*function to add tasks to today not working because it is 'deleting' all tasks upon opening*/
