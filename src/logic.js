@@ -104,8 +104,6 @@ export default function UI () {
   newTaskButton.addEventListener('click', openTask)
   cancelTask.addEventListener('click', closetask)
 
-
-
   class Task {
     constructor (description, priority, due) {
       this.description = description
@@ -115,13 +113,29 @@ export default function UI () {
 
     sayTask () {
       console.log(this.description, this.priority, this.due)
+
     }
   }
 
   function newTask () {
     const htmlDescription = document.getElementById('description').value
+    let htmlDescriptionSerialized = JSON.stringify(htmlDescription)
+    localStorage.setItem('htmldescription', htmlDescriptionSerialized)
+    let htmlDescriptionDeserialized = JSON.parse(localStorage.getItem('htmldescription'))
+    console.log(htmlDescriptionDeserialized)
+
     const htmlPriority = document.getElementById('priority').value
+    let htmlPrioritySerialized = JSON.stringify(htmlPriority)
+    localStorage.setItem('htmlpriority', htmlPrioritySerialized)
+    let htmlPriorityDeserialized = JSON.parse(localStorage.getItem('htmlpriority'))
+    console.log(htmlPriorityDeserialized)
+
     const htmlDue = document.getElementById('duedate').value
+    let htmlDueSerialized = JSON.stringify(htmlDue)
+    localStorage.setItem('htmldue', htmlDescriptionSerialized)
+    let htmlDueDeserialized = JSON.parse(localStorage.getItem('htmldue'))
+
+    console.log(htmlDueDeserialized)
     const task = new Task(htmlDescription, htmlPriority, htmlDue)
     task.sayTask()
 

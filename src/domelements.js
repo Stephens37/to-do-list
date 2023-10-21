@@ -1,8 +1,7 @@
 import _ from 'lodash'
 import './style.css'
-import { isEqual, format } from 'date-fns'
 
-export function taskElements (description, priority, dayDue) { 
+export function taskElements (description, priority, dayDue) {
   const deleteTask = document.createElement('button')
   deleteTask.setAttribute('class', 'deletetask')
   deleteTask.innerText = 'Delete'
@@ -42,6 +41,8 @@ export function taskElements (description, priority, dayDue) {
   tableRow.append(dayDue)
 
   tableRow.append(editTask)
+
+
 
   function removeTask () {
     deleteTask.remove()
