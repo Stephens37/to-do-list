@@ -1,10 +1,6 @@
 import _, { fromPairs } from 'lodash'
 import './style.css'
 import * as domElement from './domelements'
-import { taskElements } from './domelements'
-
-import { format, isValid, parse } from 'date-fns'
-
 
 export default function UI () {
   function FormDisplay (form) {
@@ -41,10 +37,13 @@ export default function UI () {
   const newTaskButton = document.querySelector('#newtask')
   const createdProjects = document.querySelector('#createdprojectsgrid')
   let mainTitle = document.querySelector('#maintitle')
-  const mainFormPart = document.querySelector('#mainformpart')
 
   const nameForm = document.querySelector('#name_form')
   const nameSubmit = document.querySelector('#submitname')
+
+  const projects = {
+
+  }
 
   function CreateNameForm (title) {
     this.title = title
@@ -60,13 +59,20 @@ export default function UI () {
       titleDisplay.setAttribute('id', 'titledisplay')
       titleDisplay.innerText = title
       createdProjects.appendChild(titleDisplay)
-      titleDisplay.addEventListener('click', this.displayProject)
     }
+    titleDisplay.addEventListener('click', this.displayProject)
   }
 
   function createProject () {
     const formTitle = document.querySelector('#title').value
-    const newNameForm = new CreateNameForm(formTitle)
+    let newNameForm = new CreateNameForm(formTitle)
+    function whichProject () {
+      let newProj = Object.assign({}, projects, {project: formTitle})
+      document.write('Project' + newProj.project)
+      localStorage.setItem('projects', projects)
+    }
+    whichProject()
+
     newNameForm.submitName()
   }
 
@@ -88,78 +94,4 @@ export default function UI () {
     e.preventDefault()
     nameForm.reset()
   })
-
-  const taskForm = document.querySelector('#task_form')
-  const cancelTask = document.querySelector('#closetaskform')
-
-  function openTask () {
-    const taskOpen = new FormDisplay(taskForm)
-    taskOpen.openForm()
-  }
-  function closetask () {
-    const taskClose = new FormDisplay(taskForm)
-    taskClose.closeForm()
-  }
-
-  newTaskButton.addEventListener('click', openTask)
-  cancelTask.addEventListener('click', closetask)
-
-  class Task {
-    constructor (description, priority, due) {
-      this.description = description
-      this.priority = priority
-      this.due = due
-    }
-
-    sayTask () {
-      console.log(this.description, this.priority, this.due)
-
-    }
-  }
-
-  function newTask () {
-    const htmlDescription = document.getElementById('description').value
-    let htmlDescriptionSerialized = JSON.stringify(htmlDescription)
-    localStorage.setItem('htmldescription', htmlDescriptionSerialized)
-    let htmlDescriptionDeserialized = JSON.parse(localStorage.getItem('htmldescription'))
-    console.log(htmlDescriptionDeserialized)
-
-    const htmlPriority = document.getElementById('priority').value
-    let htmlPrioritySerialized = JSON.stringify(htmlPriority)
-    localStorage.setItem('htmlpriority', htmlPrioritySerialized)
-    let htmlPriorityDeserialized = JSON.parse(localStorage.getItem('htmlpriority'))
-    console.log(htmlPriorityDeserialized)
-
-    const htmlDue = document.getElementById('duedate').value
-    let htmlDueSerialized = JSON.stringify(htmlDue)
-    localStorage.setItem('htmldue', htmlDescriptionSerialized)
-    let htmlDueDeserialized = JSON.parse(localStorage.getItem('htmldue'))
-
-    console.log(htmlDueDeserialized)
-    const task = new Task(htmlDescription, htmlPriority, htmlDue)
-    task.sayTask()
-
-    taskElements(htmlDescription, htmlPriority, htmlDue)
-  }
-
-  taskForm.addEventListener('submit', newTask)
-
-  const todayButton = document.querySelector('#todaybutton')
-  const weekButton = document.querySelector('#weekbutton')
-
-  function todayTasks () {
-    mainTitle.innerText = 'Today'
-    document.querySelector('#newtaskbutton').style.display = 'none'
-    document.querySelector('#taskinfo').style.display = 'none'
-  }
-
-  todayButton.addEventListener('click', todayTasks)
-
-  function weekView () {
-    mainTitle.innerText = 'This Week'
-    document.querySelector('#newtaskbutton').style.display = 'none'
-    document.querySelector('#taskinfo').style.display = 'none'
-  }
-
-  weekButton.addEventListener('click', weekView)
 }
