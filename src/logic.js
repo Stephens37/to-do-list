@@ -48,6 +48,10 @@ export default function UI () {
   const nameForm = document.querySelector('#name_form')
   const nameSubmit = document.querySelector('#submitname')
 
+  const projects = {
+
+  }
+
   function CreateNameForm (title) {
     this.title = title
     this.displayProject = function () {
@@ -61,27 +65,13 @@ export default function UI () {
       titleDisplay.setAttribute('id', 'titledisplay')
       titleDisplay.innerText = title
       createdProjects.appendChild(titleDisplay)
-      titleDisplay.addEventListener('click', this.displayProject)
     }
+    titleDisplay.addEventListener('click', this.displayProject)
   }
 
   function createProject () {
     const formTitle = document.querySelector('#title').value
-    let newNameForm = new CreateNameForm(formTitle)
-    function whichProject () {
-      let projects = []
-      const newProj = JSON.stringify(formTitle)
-      const newProjPush = projects.push({ ' project ': newProj })
-      localStorage.setItem('projects', projects, newProjPush)
-      if (localStorage.setItem('projects', projects) === true) {
-        console.log('hi')
-      } else {
-        console.log('no')
-      }
-      console.log(projects)
-    }
-    whichProject()
-
+    const newNameForm = new CreateNameForm(formTitle)
     newNameForm.submitName()
   }
 
