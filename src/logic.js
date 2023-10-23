@@ -3,12 +3,6 @@ import './style.css'
 import * as domElement from './domelements'
 
 export default function UI () {
-  window.onload = function () {
-    const currentProjects = localStorage.getItem('projects')
-    console.log(currentProjects)
-    projects = currentProjects.parse
-    console.log(projects)
-  }
 
   function FormDisplay (form) {
     this.form = form
@@ -48,9 +42,6 @@ export default function UI () {
   const nameForm = document.querySelector('#name_form')
   const nameSubmit = document.querySelector('#submitname')
 
-  const projects = {
-
-  }
 
   function CreateNameForm (title) {
     this.title = title
@@ -65,14 +56,32 @@ export default function UI () {
       titleDisplay.setAttribute('id', 'titledisplay')
       titleDisplay.innerText = title
       createdProjects.appendChild(titleDisplay)
+      titleDisplay.addEventListener('click', this.displayProject)
     }
-    titleDisplay.addEventListener('click', this.displayProject)
   }
+  
+  let projects = []
+  
+  function whichProject () {
+      console.log(projects)
+      const formTitle = document.querySelector('#title').value
+      projects.push(formTitle)
+      console.log(projects)
+      localStorage.setItem('projects', projects)
+    }
 
   function createProject () {
     const formTitle = document.querySelector('#title').value
     const newNameForm = new CreateNameForm(formTitle)
+    whichProject()
     newNameForm.submitName()
+  }
+
+  window.onload = function () {
+    const currentProjects = localStorage.getItem('projects')
+    console.log(currentProjects)
+    projects = currentProjects
+    console.log(projects)
   }
 
   function titleDisplayClicked () {
