@@ -1,5 +1,6 @@
 import _, { fromPairs } from 'lodash'
 import './style.css'
+import './storage.js'
 import * as domElement from './domelements'
 
 function FormDisplay (form) {
@@ -64,6 +65,7 @@ export function whichProject (projects) {
   }
   console.log(projects)
   const formTitle = document.querySelector('#title').value
+  console.log(formTitle)
   projects.projectArray.push(formTitle)
   return projects
 }
@@ -85,6 +87,7 @@ nameSubmit.addEventListener('click', createProject)
 
 function displayFunc () {
   const titleDisplay = document.querySelector('#titledisplay')
+  console.log(titleDisplay)
   titleDisplay.addEventListener('click', titleDisplayClicked)
 }
 document.addEventListener('DOMContentLoaded', displayFunc)
