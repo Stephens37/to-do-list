@@ -60,15 +60,18 @@ export default function UI () {
     }
   }
   
-  let projects = []
-  
-  function whichProject () {
-      console.log(projects)
-      const formTitle = document.querySelector('#title').value
-      projects.push(formTitle)
-      console.log(projects)
-      localStorage.setItem('projects', projects)
-    }
+let projects = []
+projects.setAttribute('id', 'projects')
+
+function whichProject () {
+    console.log(projects)
+    const formTitle = document.querySelector('#title').value
+    projects.push(formTitle)
+    let stringProjects = JSON.stringify(projects)
+    console.log(projects)
+    localStorage.setItem('projects', projects)
+    return stringProjects
+  }
 
   function createProject () {
     const formTitle = document.querySelector('#title').value
@@ -78,10 +81,8 @@ export default function UI () {
   }
 
   window.onload = function () {
-    const currentProjects = localStorage.getItem('projects')
+    const currentProjects = JSON.parse(localStorage.getItem('projects'))
     console.log(currentProjects)
-    projects = currentProjects
-    console.log(projects)
   }
 
   function titleDisplayClicked () {
