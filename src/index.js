@@ -1,11 +1,12 @@
 import _ from 'lodash'
 import './style.css'
 import './domelements.js'
-import UI from './logic.js'
+import * as logic from './logic.js'
 
-document.addEventListener('DOMContentLoaded', UI)
+document.addEventListener('DOMContentLoaded', logic)
 
-let projects = document.querySelector('#projects')
+let project = logic.whichProject()
+console.log(project)
 
 if (!localStorage.getItem('projects')) {
   populateStorage()
@@ -14,15 +15,14 @@ if (!localStorage.getItem('projects')) {
 }
 
 function populateStorage () {
-  localStorage.setItem('projects', document.getElementById('projects').value)
-  JSON.stringify(projects)
+  let stringProject = JSON.stringify(project)
+  localStorage.setItem('projects', stringProject)
+  console.log(stringProject)
   setStyles()
 }
 
 function setStyles () {
-  let currentProjects = localStorage.getItem('projects')
-  JSON.parse(currentProjects)
-  document.getElementById('projects').value = currentProjects
+  JSON.parse(localStorage.getItem('projects'))
 }
 
-projects.onchange = populateStorage
+project.onchange = populateStorage()
