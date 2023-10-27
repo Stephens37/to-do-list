@@ -7,14 +7,14 @@ console.log(project)
 
 if (!localStorage.getItem('projects')) {
   populateStorage()
+  console.log('hi')
 } else {
   setStyles()
+  console.log('bye')
 }
 
 function populateStorage () {
-  let stringProject = JSON.stringify(project)
-  localStorage.setItem('projects', stringProject)
-  console.log(stringProject)
+  localStorage.setItem('projects', JSON.stringify(project))
   setStyles()
 }
 

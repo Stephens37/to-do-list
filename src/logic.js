@@ -1,6 +1,5 @@
 import _, { fromPairs } from 'lodash'
 import './style.css'
-import './storage.js'
 import * as domElement from './domelements'
 
 function FormDisplay (form) {
@@ -53,6 +52,7 @@ function CreateNameForm (title) {
     const titleDisplay = document.createElement('button')
     titleDisplay.setAttribute('id', 'titledisplay')
     titleDisplay.innerText = title
+    console.log(titleDisplay.innerText)
     createdProjects.appendChild(titleDisplay)
     titleDisplay.addEventListener('click', this.displayProject)
   }
@@ -67,6 +67,7 @@ export function whichProject (projects) {
   const formTitle = document.querySelector('#title').value
   console.log(formTitle)
   projects.projectArray.push(formTitle)
+  console.log(projects.projectArray)
   return projects
 }
 
@@ -77,20 +78,7 @@ function createProject () {
   newNameForm.submitName()
 }
 
-function titleDisplayClicked () {
-  const formTitle = document.querySelector('#title').value
-  const mainProjectView = new CreateNameForm(formTitle)
-  mainProjectView.displayProject()
-}
-
 nameSubmit.addEventListener('click', createProject)
-
-function displayFunc () {
-  const titleDisplay = document.querySelector('#titledisplay')
-  console.log(titleDisplay)
-  titleDisplay.addEventListener('click', titleDisplayClicked)
-}
-document.addEventListener('DOMContentLoaded', displayFunc)
 
 nameForm.addEventListener('submit', (e) => {
   e.preventDefault()
