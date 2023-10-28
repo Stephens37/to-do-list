@@ -58,24 +58,22 @@ function CreateNameForm (title) {
   }
 }
 
-export function whichProject (projects) {
-  projects = {
-    id: 'project',
-    projectArray: []
-  }
-  console.log(projects)
+export function whichProject (project) {
+  project = []
+  console.log(project)
   const formTitle = document.querySelector('#title').value
   console.log(formTitle)
-  projects.projectArray.push(formTitle)
-  console.log(projects.projectArray)
-  return projects
+  project.push(formTitle)
+  console.log(project)
+  return project
 }
 
-function createProject () {
-  const formTitle = document.querySelector('#title').value
+export function createProject (formTitle) {
+  formTitle = document.querySelector('#title').value
   const newNameForm = new CreateNameForm(formTitle)
   whichProject()
   newNameForm.submitName()
+  return formTitle
 }
 
 nameSubmit.addEventListener('click', createProject)
