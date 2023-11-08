@@ -1,6 +1,7 @@
 import _, { fromPairs } from 'lodash'
 import './style.css'
 import * as domElement from './domelements'
+import tasks from './'
 
 function FormDisplay (form) {
   this.form = form
@@ -35,15 +36,14 @@ nameFormFunction()
 
 const newTaskButton = document.querySelector('#newtask')
 const createdProjects = document.querySelector('#createdprojectsgrid')
-let mainTitle = document.querySelector('#maintitle')
 
 const nameForm = document.querySelector('#name_form')
 const nameSubmit = document.querySelector('#submitname')
 
 function CreateNameForm (title) {
   this.title = title
+
   this.displayProject = function () {
-    mainTitle.innerText = title
     newTaskButton.style.display = 'block'
     console.log(title)
   }
@@ -58,22 +58,15 @@ function CreateNameForm (title) {
   }
 }
 
-export function whichProject (project) {
-  project = []
-  console.log(project)
-  const formTitle = document.querySelector('#title').value
-  console.log(formTitle)
-  project.push(formTitle)
-  console.log(project)
-  return project
-}
+let project
 
-export function createProject (formTitle) {
+function createProject (formTitle) {
+  project = []
   formTitle = document.querySelector('#title').value
   const newNameForm = new CreateNameForm(formTitle)
-  whichProject()
   newNameForm.submitName()
-  return formTitle
+  project.push(formTitle)
+  return { formTitle, project }
 }
 
 nameSubmit.addEventListener('click', createProject)
@@ -81,4 +74,17 @@ nameSubmit.addEventListener('click', createProject)
 nameForm.addEventListener('submit', (e) => {
   e.preventDefault()
   nameForm.reset()
+  console.log(createProject.project)
 })
+
+let projects
+
+function projectExport () {
+  if (nameSubmit.addEventListener('click', createProject) === true) {
+    projects = createProject.project
+  }
+}
+
+projectExport()
+
+export { projects }

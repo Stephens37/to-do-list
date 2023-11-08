@@ -2,15 +2,18 @@ import './style.css'
 import './domelements.js'
 import * as logic from './logic.js'
 
-let project = logic.whichProject()
-let formText = logic.createProject()
+let projects = logic.projects
 console.log(project)
 
-if (!localStorage.getItem('projects')) {
-  populateStorage()
-} else {
-  setStyles()
-}
+window.addEventListener('load', function () {
+  if (!localStorage.getItem('projects')) {
+    populateStorage()
+    console.log('hi')
+  } else {
+    setStyles()
+    console.log('bye')
+  }
+})
 
 function populateStorage () {
   let stringProject = JSON.stringify(project)
@@ -22,7 +25,7 @@ function populateStorage () {
 function setStyles () {
   let currentArray = JSON.parse(localStorage.getItem('projects'))
   project = currentArray
-  formText.value = 
+  console.log(project)
 }
 
 project.onchange = populateStorage()
