@@ -1,7 +1,7 @@
 import _, { fromPairs } from 'lodash'
 import './style.css'
 import * as domElement from './domelements'
-import tasks from './'
+import { populateStorage } from './storage.js'
 
 function FormDisplay (form) {
   this.form = form
@@ -58,33 +58,16 @@ function CreateNameForm (title) {
   }
 }
 
-let project
+export let project = []
 
 function createProject (formTitle) {
-  project = []
   formTitle = document.querySelector('#title').value
   const newNameForm = new CreateNameForm(formTitle)
   newNameForm.submitName()
   project.push(formTitle)
+  console.log(project)
+  populateStorage(project)
   return { formTitle, project }
 }
 
 nameSubmit.addEventListener('click', createProject)
-
-nameForm.addEventListener('submit', (e) => {
-  e.preventDefault()
-  nameForm.reset()
-  console.log(createProject.project)
-})
-
-let projects
-
-function projectExport () {
-  if (nameSubmit.addEventListener('click', createProject) === true) {
-    projects = createProject.project
-  }
-}
-
-projectExport()
-
-export { projects }
