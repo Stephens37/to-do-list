@@ -40,7 +40,7 @@ const createdProjects = document.querySelector('#createdprojectsgrid')
 const nameForm = document.querySelector('#name_form')
 const nameSubmit = document.querySelector('#submitname')
 
-function CreateNameForm (title) {
+export function CreateNameForm (title) {
   this.title = title
 
   this.displayProject = function () {
@@ -70,4 +70,7 @@ function createProject (formTitle) {
   return { formTitle, project }
 }
 
+// now that there is an array being stored, we need to 
+
 nameSubmit.addEventListener('click', createProject)
+
