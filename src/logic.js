@@ -3,7 +3,7 @@ import './style.css'
 import * as domElement from './domelements'
 import { populateStorage } from './storage.js'
 
-function FormDisplay (form) {
+export function FormDisplay (form) {
   this.form = form
 
   this.openForm = function () {
@@ -36,6 +36,7 @@ nameFormFunction()
 
 const newTaskButton = document.querySelector('#newtask')
 const createdProjects = document.querySelector('#createdprojectsgrid')
+const mainTitle = document.querySelector('#maintitle')
 
 const nameForm = document.querySelector('#name_form')
 const nameSubmit = document.querySelector('#submitname')
@@ -45,7 +46,10 @@ export function CreateNameForm (title) {
 
   this.displayProject = function () {
     newTaskButton.style.display = 'block'
-    console.log(title)
+  }
+
+  this.displayMain = function () {
+    mainTitle.innerText = title
   }
 
   this.submitName = function () {
@@ -55,6 +59,7 @@ export function CreateNameForm (title) {
     console.log(titleDisplay.innerText)
     createdProjects.appendChild(titleDisplay)
     titleDisplay.addEventListener('click', this.displayProject)
+    titleDisplay.addEventListener('click', this.displayMain)
   }
 }
 

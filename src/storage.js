@@ -17,6 +17,8 @@ export function populateStorage (project) {
   localStorage.setItem('projects', stringProject)
 }
 
+// export function populateTasks(htmlDescription, )
+
 function setStyles (project) {
   let currentArray = JSON.parse(localStorage.getItem('projects'))
   project = currentArray
