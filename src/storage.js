@@ -20,9 +20,10 @@ export function populateStorage (project) {
 function setStyles (project) {
   let currentArray = JSON.parse(localStorage.getItem('projects'))
   project = currentArray
+  console.log(project)
   let i = 0
-  while(i < project.length) {
-    let projectid = project[0 + i]
+  while (i < project.length) {
+    let projectid = project[0 + i++]
     const reviveForm = new CreateNameForm(projectid)
     reviveForm.submitName()
   }
