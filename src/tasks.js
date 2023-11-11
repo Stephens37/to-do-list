@@ -18,14 +18,18 @@ newTaskButton.addEventListener('click', openTask)
 cancelTask.addEventListener('click', closetask)
 
 class Task {
-  constructor (description, priority, due) {
+  constructor (description, priority, due, taskArray, mainArray) {
     this.description = description
     this.priority = priority
     this.due = due
+    this.taskArray = taskArray
+    this.mainArray = mainArray
   }
 
   sayTask () {
-    console.log(this.description, this.priority, this.due)
+    this.taskArray = [this.description, this.priority, this.due]
+    this.mainArray.push(this.taskArray)
+    console.log(this.taskArray)
   }
 }
 
@@ -36,8 +40,14 @@ function newTask () {
 
   const htmlDue = document.getElementById('duedate').value
 
-  const task = new Task(htmlDescription, htmlPriority, htmlDue)
+  let htmlTaskArray = []
+
+  let htmlMainArray = []
+
+  const task = new Task(htmlDescription, htmlPriority, htmlDue, htmlTaskArray, htmlMainArray)
   task.sayTask()
+  console.log(htmlTaskArray)
+  console.log(htmlMainArray)
 
   taskElements(htmlDescription, htmlPriority, htmlDue)
 }
