@@ -65,15 +65,17 @@ export function CreateNameForm (title) {
 
 export let project = []
 export let formTitle = document.querySelector('#title').value
+console.log(formTitle)
 
 function createProject () {
+  console.log(formTitle)
   const newNameForm = new CreateNameForm(formTitle)
   newNameForm.submitName()
   project.push({ projecttitle: formTitle })
   console.log(project)
-  populateStorage(project)
   return { formTitle, project }
 }
+document.addEventListener('beforeunload', populateStorage(project))
 
 // now that there is an array being stored, we need to
 

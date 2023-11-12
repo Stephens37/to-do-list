@@ -32,8 +32,8 @@ function setStyles (project) {
   console.log(project)
   let i = 0
   while (i < project.length) {
-    let projectid = project[0 + i++]
-    const reviveForm = new CreateNameForm(projectid)
+    let projectID = project[0 + i++]
+    const reviveForm = new CreateNameForm(projectID)
     reviveForm.submitName()
   }
 }

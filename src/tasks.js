@@ -4,6 +4,8 @@ import { FormDisplay } from './logic.js'
 import { populateStorage } from './storage.js'
 import { project } from './logic.js'
 import { formTitle } from './logic.js'
+import { taskProjectObject } from './logic.js'
+import { indexOf } from 'lodash'
 
 const taskForm = document.querySelector('#task_form')
 const cancelTask = document.querySelector('#closetaskform')
@@ -56,10 +58,15 @@ function newTask () {
   console.log(htmlMainArray)
 
   taskElements(htmlDescription, htmlPriority, htmlDue)
-  projectArrayCopy = Object.assign(formTitle, { tasks: mainTaskArray })
+  
+  let projectIndex = project.indexOf(mainTitle.innerText)
+  console.log(projectIndex)
+  projectArrayCopy = Object.assign(projectIndex, { tasks: mainTaskArray })
   console.log(projectArrayCopy)
-  populateStorage(projectArrayCopy)
+  return projectArrayCopy
 }
+
+document.addEventListener('beforeunload', populateStorage(projectArrayCopy))
 
 taskForm.addEventListener('submit', newTask)
 
