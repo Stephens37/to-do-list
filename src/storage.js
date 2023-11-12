@@ -1,6 +1,7 @@
 import './style.css'
 import './domelements.js'
 import { CreateNameForm } from './logic.js'
+import { Task } from './tasks.js'
 
 window.addEventListener('load', function () {
   if (!localStorage.getItem('projects')) {
@@ -15,6 +16,7 @@ window.addEventListener('load', function () {
 export function populateStorage (project) {
   let stringProject = JSON.stringify(project)
   localStorage.setItem('projects', stringProject)
+  console.log(stringProject)
 }
 
 // export function populateTasks(htmlDescription, )

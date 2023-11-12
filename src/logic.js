@@ -64,18 +64,17 @@ export function CreateNameForm (title) {
 }
 
 export let project = []
+export let formTitle = document.querySelector('#title').value
 
-function createProject (formTitle) {
-  formTitle = document.querySelector('#title').value
+function createProject () {
   const newNameForm = new CreateNameForm(formTitle)
   newNameForm.submitName()
-  project.push(formTitle)
+  project.push({ projecttitle: formTitle })
   console.log(project)
   populateStorage(project)
   return { formTitle, project }
 }
 
-// now that there is an array being stored, we need to 
+// now that there is an array being stored, we need to
 
 nameSubmit.addEventListener('click', createProject)
-

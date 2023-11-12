@@ -1,6 +1,9 @@
 import * as domElement from './domelements'
 import { taskElements } from './domelements'
 import { FormDisplay } from './logic.js'
+import { populateStorage, populateTasks } from './storage.js'
+import { project } from './logic.js'
+import { formTitle } from './logic.js'
 
 const taskForm = document.querySelector('#task_form')
 const cancelTask = document.querySelector('#closetaskform')
@@ -15,17 +18,24 @@ function closetask () {
 }
 const newTaskButton = document.querySelector('#newtask')
 newTaskButton.addEventListener('click', openTask)
+
 cancelTask.addEventListener('click', closetask)
 
-class Task {
-  constructor (description, priority, due) {
+let mainTaskArray = []
+let titleDisplay = document.querySelector('#titledisplay')
+let projectArrayCopy = [...project]
+console.log(projectArrayCopy)
+
+export class Task {
+  constructor (description, priority, due, taskArray) {
     this.description = description
     this.priority = priority
     this.due = due
+    this.taskArray = taskArray
   }
 
   sayTask () {
-    console.log(this.description, this.priority, this.due)
+    mainTaskArray.push(this.description, this.priority, this.due)
   }
 }
 
@@ -40,6 +50,9 @@ function newTask () {
   task.sayTask()
 
   taskElements(htmlDescription, htmlPriority, htmlDue)
+  projectArrayCopy = Object.assign(formTitle, { tasks: mainTaskArray })
+  console.log(projectArrayCopy)
+  populateStorage(projectArrayCopy)
 }
 
 taskForm.addEventListener('submit', newTask)
