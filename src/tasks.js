@@ -1,7 +1,7 @@
 import * as domElement from './domelements'
 import { taskElements } from './domelements'
 import { FormDisplay } from './logic.js'
-import { populateStorage, populateTasks } from './storage.js'
+import { populateStorage } from './storage.js'
 import { project } from './logic.js'
 import { formTitle } from './logic.js'
 
@@ -46,8 +46,14 @@ function newTask () {
 
   const htmlDue = document.getElementById('duedate').value
 
-  const task = new Task(htmlDescription, htmlPriority, htmlDue)
+  let htmlTaskArray = []
+
+  let htmlMainArray = []
+
+  const task = new Task(htmlDescription, htmlPriority, htmlDue, htmlTaskArray, htmlMainArray)
   task.sayTask()
+  console.log(htmlTaskArray)
+  console.log(htmlMainArray)
 
   taskElements(htmlDescription, htmlPriority, htmlDue)
   projectArrayCopy = Object.assign(formTitle, { tasks: mainTaskArray })

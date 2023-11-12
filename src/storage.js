@@ -19,6 +19,11 @@ export function populateStorage (project) {
   console.log(stringProject)
 }
 
+export function populateTasks (tasks) {
+  let stringTasks = JSON.stringify(tasks)
+  localStorage.setItem('task', stringTasks)
+}
+
 // export function populateTasks(htmlDescription, )
 
 function setStyles (project) {
