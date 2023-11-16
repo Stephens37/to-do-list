@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
+
   mode: 'development',
   entry: './src/index.js',
 
@@ -30,7 +31,7 @@ module.exports = {
     rules: [
       {
         test: /\.(?:js|mjs|cjs)$/,
-        exclude: /node_modules/,
+        exclude: /node_modules|tasks\.js/,
         use: {
           loader: 'babel-loader',
           options: {

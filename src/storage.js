@@ -1,7 +1,6 @@
 import './style.css'
 import './domelements.js'
 import { CreateNameForm } from './logic.js'
-import { Task } from './tasks.js'
 
 window.addEventListener('load', function () {
   if (!localStorage.getItem('projects')) {

@@ -71,7 +71,7 @@ function createProject (formTitle) {
   console.log(formTitle)
   const newNameForm = new CreateNameForm(formTitle)
   newNameForm.submitName()
-  project.push([formTitle])
+  project.push(formTitle)
   console.log(project)
   populateStorage(project)
   return { formTitle, project }
@@ -130,9 +130,25 @@ function newTask () {
 
   //want to push tasks to the end of the projecttitle in the array
   taskElements(htmlDescription, htmlPriority, htmlDue)
-  let projectIndex = project.indexOf(project.mainTitle)
-  console.log(projectIndex)
-  project.splice(projectIndex, 0, htmlTaskArray)
+  /* var x = document.getElementById('x')  
+var theDiv = x.innerHTML.trim();
+for (i=0; i < headerRow.length; i++){
+    if (headerRow[i] == theDiv) {
+              // your codes goes here
+              console.log('works')
+    }
+} */
+  let projectMainTitle = document.querySelector('#maintitle')
+  let mainTitleTrim = projectMainTitle.innerText.trim()
+  for (let i = 0; i < project.length; i++) {
+    if (project[i] == mainTitleTrim) {
+      project.splice(project[i], 0, mainTaskArray)
+      console.log(mainTaskArray)
+      console.log(project)
+      console.log('works')
+      return
+    }
+  }
   console.log(project)
   populateStorage(project)
 }
@@ -157,4 +173,3 @@ function weekView () {
 }
 
 weekButton.addEventListener('click', weekView)
-
