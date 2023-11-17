@@ -71,9 +71,8 @@ function createProject (formTitle) {
   console.log(formTitle)
   const newNameForm = new CreateNameForm(formTitle)
   newNameForm.submitName()
-  project.push(formTitle)
+  project.push({ formTitle })
   console.log(project)
-  populateStorage(project)
   return { formTitle, project }
 }
 
@@ -106,7 +105,6 @@ export class Task {
     this.description = description
     this.priority = priority
     this.due = due
-    this.taskArray = taskArray
   }
 
   sayTask () {
@@ -121,11 +119,9 @@ function newTask () {
 
   const htmlDue = document.getElementById('duedate').value
 
-  let htmlTaskArray = []
 
-  const task = new Task(htmlDescription, htmlPriority, htmlDue, htmlTaskArray)
+  const task = new Task(htmlDescription, htmlPriority, htmlDue)
   task.sayTask()
-  console.log(htmlTaskArray)
 
 
   //want to push tasks to the end of the projecttitle in the array
@@ -141,16 +137,16 @@ for (i=0; i < headerRow.length; i++){
   let projectMainTitle = document.querySelector('#maintitle')
   let mainTitleTrim = projectMainTitle.innerText.trim()
   for (let i = 0; i < project.length; i++) {
-    if (project[i] == mainTitleTrim) {
-      project.splice(project[i], 0, mainTaskArray)
-      console.log(mainTaskArray)
-      console.log(project)
-      console.log('works')
-      return
+    let projectTitle = project[i].formTitle
+    console.log(projectTitle)
+    let projectIndex = project[i]
+    console.log
+    if (projectTitle == mainTitleTrim) {
+      console.log(projectIndex)
+      projectIndex.taskArray = mainTaskArray
     }
   }
   console.log(project)
-  populateStorage(project)
 }
 
 taskForm.addEventListener('submit', newTask)
@@ -173,3 +169,4 @@ function weekView () {
 }
 
 weekButton.addEventListener('click', weekView)
+window.addEventListener('beforeunload', populateStorage(project))
