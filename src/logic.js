@@ -61,10 +61,18 @@ export function CreateNameForm (title) {
     createdProjects.appendChild(titleDisplay)
     titleDisplay.addEventListener('click', this.displayProject)
     titleDisplay.addEventListener('click', this.displayMain)
+    titleDisplay.addEventListener('click', function () {
+      mainTaskArray = []
+      let tbody = document.querySelector('tbody')
+      tbody.innerHTML = ''
+    }, {once: true})
   }
 }
 
 export let project = []
+let mainTaskArray = []
+
+let titleDisplay = document.querySelector('#titledisplay')
 
 function createProject (formTitle) {
   formTitle = document.querySelector('#title').value
@@ -80,8 +88,6 @@ function createProject (formTitle) {
 
 nameSubmit.addEventListener('click', createProject)
 
-
-
 const taskForm = document.querySelector('#task_form')
 const cancelTask = document.querySelector('#closetaskform')
 
@@ -96,9 +102,6 @@ function closetask () {
 newTaskButton.addEventListener('click', openTask)
 
 cancelTask.addEventListener('click', closetask)
-
-let mainTaskArray = []
-let titleDisplay = document.querySelector('#titledisplay')
 
 export class Task {
   constructor (description, priority, due, taskArray) {
@@ -141,9 +144,11 @@ for (i=0; i < headerRow.length; i++){
     console.log(projectTitle)
     let projectIndex = project[i]
     console.log
-    if (projectTitle == mainTitleTrim) {
+    if (projectTitle == mainTitleTrim && projectIndex.taskArray == undefined) {
       console.log(projectIndex)
       projectIndex.taskArray = mainTaskArray
+    } else if (projectTitle == mainTitleTrim && projectIndex.taskArray !== undefined) {
+      projectIndex.taskArray.push(mainTaskArray)
     }
   }
   console.log(project)
@@ -169,4 +174,3 @@ function weekView () {
 }
 
 weekButton.addEventListener('click', weekView)
-window.addEventListener('beforeunload', populateStorage(project))
