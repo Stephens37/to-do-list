@@ -70,7 +70,7 @@ export function CreateNameForm (title) {
 }
 
 export let project = []
-let mainTaskArray = []
+export let mainTaskArray = []
 
 let titleDisplay = document.querySelector('#titledisplay')
 
@@ -104,7 +104,7 @@ newTaskButton.addEventListener('click', openTask)
 cancelTask.addEventListener('click', closetask)
 
 export class Task {
-  constructor (description, priority, due, taskArray) {
+  constructor (description, priority, due) {
     this.description = description
     this.priority = priority
     this.due = due
@@ -147,11 +147,14 @@ for (i=0; i < headerRow.length; i++){
     if (projectTitle == mainTitleTrim && projectIndex.taskArray == undefined) {
       console.log(projectIndex)
       projectIndex.taskArray = mainTaskArray
-    } else if (projectTitle == mainTitleTrim && projectIndex.taskArray !== undefined) {
-      projectIndex.taskArray.push(mainTaskArray)
     }
   }
   console.log(project)
+  function deleteArrayTask () {
+    mainTaskArray.splice(this.htmlDescription, 3)
+  }
+  const deleteATButton = document.querySelector('.deletetask')
+  deleteATButton.addEventListener('click', deleteArrayTask)
 }
 
 taskForm.addEventListener('submit', newTask)

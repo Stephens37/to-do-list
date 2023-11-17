@@ -44,8 +44,6 @@ export function taskElements (description, priority, dayDue) {
 
   tableRow.append(editTask)
 
-
-
   function removeTask () {
     deleteTask.remove()
     description.remove()
