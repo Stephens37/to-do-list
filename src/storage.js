@@ -8,6 +8,7 @@ window.addEventListener('load', function () {
     console.log('hi')
   } else {
     setStyles()
+    setTasks()
     console.log('bye')
   }
 })
@@ -36,6 +37,28 @@ function setStyles () {
   for (let i = 0; i < project.length; i++) {
     const reviveForm = new CreateNameForm(mainTitle)
     reviveForm.submitName()
+  }
+}
+
+export function setTasks () {
+  let taskArray = localStorage.getItem('taskarray')
+  for (let i = 0; i < taskArray.length; i++) {
+    let x = -3
+    let y = -2
+    let z = -1
+    let description = taskArray[x++ + 3]
+    console.log(description)
+    let priority = taskArray[y++ + 3]
+    console.log(priority)
+    let due = taskArray[z++ + 3]
+    console.log(due)
+    const titleDisplay = document.querySelector('#titledisplay')
+    console.log(titleDisplay)
+    function displayTasks () {
+      const reviveTasks = new Task(description, priority, due)
+      reviveTasks.sayTask()
+    }
+    titleDisplay.addEventListener('click', displayTasks())
   }
 }
 

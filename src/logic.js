@@ -2,7 +2,7 @@ import _, { fromPairs } from 'lodash'
 import './style.css'
 import * as domElement from './domelements'
 import { taskElements } from './domelements'
-import { populateStorage, populateTasks } from './storage.js'
+import { populateStorage, populateTasks, setTasks } from './storage.js'
 
 export function FormDisplay (form) {
   this.form = form
@@ -62,11 +62,6 @@ export function CreateNameForm (title) {
     titleDisplay.addEventListener('click', this.displayProject)
     // titleDisplay.addEventListener('click', setTasks())
     titleDisplay.addEventListener('click', this.displayMain)
-    titleDisplay.addEventListener('click', function () {
-      mainTaskArray = []
-      let tbody = document.querySelector('tbody')
-      tbody.innerHTML = ''
-    }, {once: true})
   }
 }
 
