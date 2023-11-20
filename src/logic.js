@@ -60,7 +60,7 @@ export function CreateNameForm (title) {
     console.log(titleDisplay.innerText)
     createdProjects.appendChild(titleDisplay)
     titleDisplay.addEventListener('click', this.displayProject)
-    // titleDisplay.addEventListener('click', setTasks())
+    titleDisplay.addEventListener('click', setTasks())
     titleDisplay.addEventListener('click', this.displayMain)
   }
 }
@@ -68,7 +68,6 @@ export function CreateNameForm (title) {
 export let project = []
 export let mainTaskArray = []
 
-let titleDisplay = document.querySelector('#titledisplay')
 
 function createProject (formTitle) {
   formTitle = document.querySelector('#title').value
@@ -111,6 +110,7 @@ export class Task {
 
   sayTask () {
     mainTaskArray.push(this.description, this.priority, this.due)
+    console.log(mainTaskArray)
   }
 }
 
@@ -120,9 +120,12 @@ function newTask () {
   const htmlPriority = document.getElementById('priority').value
 
   const htmlDue = document.getElementById('duedate').value
+  console.log(htmlDue)
 
   const task = new Task(htmlDescription, htmlPriority, htmlDue)
+  console.log(task)
   task.sayTask()
+  console.log(task)
 
 
   //want to push tasks to the end of the projecttitle in the array
@@ -141,12 +144,13 @@ for (i=0; i < headerRow.length; i++){
     let projectTitle = project[i].formTitle
     console.log(projectTitle)
     let projectIndex = project[i]
-    console.log
     if (projectTitle == mainTitleTrim && projectIndex.taskArray == undefined) {
       console.log(projectIndex)
+      console.log(mainTaskArray)
       projectIndex.taskArray = mainTaskArray
-      populateStorage(project)
+      console.log(projectIndex)
     }
+    populateStorage(project)
   }
   console.log(project)
   function deleteArrayTask () {

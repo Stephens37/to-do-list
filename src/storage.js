@@ -37,6 +37,23 @@ function setStyles () {
 
 export function setTasks () {
   let currentArray = JSON.parse(localStorage.getItem('projects'))
+  console.log(currentArray)
+  let project = currentArray
+  const allNames = project.map(obj => obj.taskArray)
+  console.log(allNames)
+  console.log(project)
+  for (let i = 0; i < allNames.length; i += 3) {
+    let x = 0
+    let y = 1
+    let z = 2
+    let description = allNames[x + i]
+    console.log(description)
+    let priority = allNames[y + i]
+    let due = allNames[z + i]
+    let reviveTasks = new Task(description, priority, due)
+    //reviveTasks.sayTask()
+
+  /* let currentArray = JSON.parse(localStorage.getItem('projects'))
   let taskArray = currentArray.mainTaskArray
   for (let i = 0; i < taskArray.length; i++) {
     let x = -3
@@ -55,7 +72,7 @@ export function setTasks () {
       console.log(reviveTasks)
       reviveTasks.sayTask()
     }
-    titleDisplay.addEventListener('click', displayTasks())
+    titleDisplay.addEventListener('click', displayTasks()) */
   }
 }
 
