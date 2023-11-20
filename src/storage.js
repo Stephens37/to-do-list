@@ -1,6 +1,6 @@
 import './style.css'
 import './domelements.js'
-import { CreateNameForm, mainTaskArray, Task, mainTitle } from './logic.js'
+import { CreateNameForm, mainTaskArray, Task, mainFormTitle } from './logic.js'
 
 window.addEventListener('load', function () {
   if (!localStorage.getItem('projects')) {
@@ -8,22 +8,13 @@ window.addEventListener('load', function () {
     console.log('hi')
   } else {
     setStyles()
-    setTasks()
     console.log('bye')
   }
 })
 
-export function populateStorage (project, stringMainTitle) {
+export function populateStorage (project) {
   let stringProject = JSON.stringify(project)
   localStorage.setItem('projects', stringProject)
-  localStorage.setItem('maintitle', stringMainTitle)
-  console.log(stringProject)
-}
-
-export function populateTasks (project, stringTaskArray) {
-  let stringProject = JSON.stringify(project)
-  localStorage.setItem('projects', stringProject)
-  localStorage.setItem('taskarray', stringTaskArray)
   console.log(stringProject)
 }
 
@@ -31,17 +22,22 @@ export function populateTasks (project, stringTaskArray) {
 
 function setStyles () {
   let currentArray = JSON.parse(localStorage.getItem('projects'))
-  let mainTitle = localStorage.getItem('maintitle')
+  console.log(currentArray)
   let project = currentArray
+  const allNames = project.map(obj => obj.formTitle)
+  console.log(allNames)
   console.log(project)
-  for (let i = 0; i < project.length; i++) {
+  let i = 0
+  while (i < allNames.length) {
+    let mainTitle = allNames[0 + i++]
     const reviveForm = new CreateNameForm(mainTitle)
     reviveForm.submitName()
   }
 }
 
 export function setTasks () {
-  let taskArray = localStorage.getItem('taskarray')
+  let currentArray = JSON.parse(localStorage.getItem('projects'))
+  let taskArray = currentArray.mainTaskArray
   for (let i = 0; i < taskArray.length; i++) {
     let x = -3
     let y = -2
@@ -56,6 +52,7 @@ export function setTasks () {
     console.log(titleDisplay)
     function displayTasks () {
       const reviveTasks = new Task(description, priority, due)
+      console.log(reviveTasks)
       reviveTasks.sayTask()
     }
     titleDisplay.addEventListener('click', displayTasks())

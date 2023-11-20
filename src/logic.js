@@ -77,9 +77,11 @@ function createProject (formTitle) {
   newNameForm.submitName()
   project.push({ formTitle })
   console.log(project)
-  populateStorage(project, formTitle)
+  populateStorage(project)
   return { formTitle, project }
 }
+
+export let mainFormTitle = createProject.formTitle
 
 // now that there is an array being stored, we need to
 
@@ -143,13 +145,13 @@ for (i=0; i < headerRow.length; i++){
     if (projectTitle == mainTitleTrim && projectIndex.taskArray == undefined) {
       console.log(projectIndex)
       projectIndex.taskArray = mainTaskArray
-      populateTasks(project, mainTaskArray)
+      populateStorage(project)
     }
   }
   console.log(project)
   function deleteArrayTask () {
     mainTaskArray.splice(this.htmlDescription, 3)
-    populateTasks(project, mainTaskArray)
+    populateStorage(project)
   }
   const deleteATButton = document.querySelector('.deletetask')
   deleteATButton.addEventListener('click', deleteArrayTask)
