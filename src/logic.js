@@ -2,7 +2,7 @@ import _, { fromPairs } from 'lodash'
 import './style.css'
 import * as domElement from './domelements'
 import { taskElements } from './domelements'
-import { populateStorage } from './storage.js'
+import { populateStorage, populateTasks } from './storage.js'
 
 export function FormDisplay (form) {
   this.form = form
@@ -60,6 +60,7 @@ export function CreateNameForm (title) {
     console.log(titleDisplay.innerText)
     createdProjects.appendChild(titleDisplay)
     titleDisplay.addEventListener('click', this.displayProject)
+    // titleDisplay.addEventListener('click', setTasks())
     titleDisplay.addEventListener('click', this.displayMain)
     titleDisplay.addEventListener('click', function () {
       mainTaskArray = []
@@ -81,6 +82,7 @@ function createProject (formTitle) {
   newNameForm.submitName()
   project.push({ formTitle })
   console.log(project)
+  populateStorage(project, formTitle)
   return { formTitle, project }
 }
 
@@ -122,7 +124,6 @@ function newTask () {
 
   const htmlDue = document.getElementById('duedate').value
 
-
   const task = new Task(htmlDescription, htmlPriority, htmlDue)
   task.sayTask()
 
@@ -147,11 +148,13 @@ for (i=0; i < headerRow.length; i++){
     if (projectTitle == mainTitleTrim && projectIndex.taskArray == undefined) {
       console.log(projectIndex)
       projectIndex.taskArray = mainTaskArray
+      populateTasks(project, mainTaskArray)
     }
   }
   console.log(project)
   function deleteArrayTask () {
     mainTaskArray.splice(this.htmlDescription, 3)
+    populateTasks(project, mainTaskArray)
   }
   const deleteATButton = document.querySelector('.deletetask')
   deleteATButton.addEventListener('click', deleteArrayTask)
