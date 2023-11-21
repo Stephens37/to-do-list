@@ -3,16 +3,6 @@ import './domelements.js'
 import { CreateNameForm, mainTaskArray, mainFormTitle } from './logic.js'
 import { taskElements } from './domelements.js'
 
-window.addEventListener('load', function () {
-  if (!localStorage.getItem('projects')) {
-    populateStorage()
-    console.log('hi')
-  } else {
-    setStyles()
-    console.log('bye')
-  }
-})
-
 export function populateStorage (project) {
   let stringProject = JSON.stringify(project)
   localStorage.setItem('projects', stringProject)
@@ -22,7 +12,7 @@ export function populateStorage (project) {
 // export function populateTasks(htmlDescription, )
 
 function setStyles () {
-  let currentArray = JSON.parse(localStorage.getItem('projects'))
+  const currentArray = JSON.parse(localStorage.getItem('projects'))
   console.log(currentArray)
   let project = currentArray
   const allNames = project.map(obj => obj.formTitle)
@@ -43,15 +33,33 @@ export function setTasks () {
   const allNames = project.map(obj => obj.taskArray)
   console.log(allNames)
   console.log(project)
-  for (let i = 0; i < allNames.length; i += 3) {
-    let x = 0
-    let y = 1
-    let z = 2
-    let description = allNames[x + i++]
-    console.log(description)
-    let priority = allNames[y + i++]
-    let due = allNames[z + i++]
-    taskElements(description, priority, due)
+  function reviveTasks () {
+    for (let i = 0; i < allNames.length; i += 3) {
+      let x = 0
+      let y = 1
+      let z = 2
+      let description = allNames[x + i++]
+      console.log(description)
+      let priority = allNames[y + i++]
+      let due = allNames[z + i++]
+      taskElements(description, priority, due)
+    }
+  }
+  let titleDisplay = document.querySelector('#titledisplay')
+  if (titleDisplay.innerText == mainFormTitle) {
+    titleDisplay.addEventListener('click', reviveTasks)
+  }
+}
+
+window.addEventListener('load', function () {
+  if (localStorage.getItem('projects')) {
+    setStyles()
+    setTasks()
+    console.log('bye')
+  }
+})
+
+
     //reviveTasks.sayTask()
 
   /* let currentArray = JSON.parse(localStorage.getItem('projects'))
@@ -74,8 +82,6 @@ export function setTasks () {
       reviveTasks.sayTask()
     }
     titleDisplay.addEventListener('click', displayTasks()) */
-  }
-}
 
 /* export function setTasks (project) {
   let currentArray = JSON.parse(localStorage.getItem('projects'))

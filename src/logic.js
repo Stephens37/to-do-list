@@ -60,7 +60,7 @@ export function CreateNameForm (title) {
     console.log(titleDisplay.innerText)
     createdProjects.appendChild(titleDisplay)
     titleDisplay.addEventListener('click', this.displayProject)
-    titleDisplay.addEventListener('click', setTasks())
+    //titleDisplay.addEventListener('click', setTasks())
     titleDisplay.addEventListener('click', this.displayMain)
   }
 }
@@ -80,7 +80,7 @@ function createProject (formTitle) {
   return { formTitle, project }
 }
 
-export let mainFormTitle = createProject.formTitle
+export let mainFormTitle = project.formTitle
 
 // now that there is an array being stored, we need to
 
@@ -130,7 +130,7 @@ function newTask () {
 
   //want to push tasks to the end of the projecttitle in the array
   taskElements(htmlDescription, htmlPriority, htmlDue)
-  /* var x = document.getElementById('x')  
+  /* var x = document.getElementById('x')
 var theDiv = x.innerHTML.trim();
 for (i=0; i < headerRow.length; i++){
     if (headerRow[i] == theDiv) {
