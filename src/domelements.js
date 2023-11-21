@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import './style.css'
 
 export function taskElements (description, priority, dayDue) {

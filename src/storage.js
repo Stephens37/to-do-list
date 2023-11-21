@@ -1,6 +1,7 @@
 import './style.css'
 import './domelements.js'
-import { CreateNameForm, mainTaskArray, Task, mainFormTitle } from './logic.js'
+import { CreateNameForm, mainTaskArray, mainFormTitle } from './logic.js'
+import { taskElements } from './domelements.js'
 
 window.addEventListener('load', function () {
   if (!localStorage.getItem('projects')) {
@@ -46,11 +47,11 @@ export function setTasks () {
     let x = 0
     let y = 1
     let z = 2
-    let description = allNames[x + i]
+    let description = allNames[x + i++]
     console.log(description)
-    let priority = allNames[y + i]
-    let due = allNames[z + i]
-    let reviveTasks = new Task(description, priority, due)
+    let priority = allNames[y + i++]
+    let due = allNames[z + i++]
+    taskElements(description, priority, due)
     //reviveTasks.sayTask()
 
   /* let currentArray = JSON.parse(localStorage.getItem('projects'))
