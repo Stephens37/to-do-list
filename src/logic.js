@@ -80,9 +80,15 @@ function createProject (formTitle) {
   return { formTitle, project }
 }
 
-export let mainFormTitle = project.formTitle
+export let mainFormTitle = createProject.formTitle
+console.log(mainFormTitle)
 
-// now that there is an array being stored, we need to
+function preventSubmit(event) {
+  let warn = "preventDefault() won't let you submit this!"
+  console.log(warn)
+  event.preventDefault()
+}
+nameSubmit.addEventListener('click', preventSubmit)
 
 nameSubmit.addEventListener('click', createProject)
 
@@ -161,6 +167,7 @@ for (i=0; i < headerRow.length; i++){
   deleteATButton.addEventListener('click', deleteArrayTask)
 }
 
+taskForm.addEventListener('click', preventSubmit)
 taskForm.addEventListener('submit', newTask)
 
 const todayButton = document.querySelector('#todaybutton')
