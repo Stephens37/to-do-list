@@ -1,6 +1,6 @@
 import './style.css'
 import './domelements.js'
-import { CreateNameForm, mainTaskArray, mainFormTitle } from './logic.js'
+import { CreateNameForm, mainTaskArray } from './logic.js'
 import { taskElements } from './domelements.js'
 
 export function populateStorage (project) {
@@ -26,15 +26,21 @@ function setStyles () {
   }
 }
 
+/* function setTasks () {
+  parse the project array
+  get the unnamed object with a formtitle equal to the title display button clicked
+  get task array from that object
+  create a loop that loops through the task array and adds those values to taskElements to be displayed on the page
+}
+*/
+
 export function setTasks () {
   let currentArray = JSON.parse(localStorage.getItem('projects'))
-  console.log(currentArray)
-  let project = currentArray
-  const allNames = project.map(obj => obj.taskArray)
+  const allNames = currentArray.map(obj => obj.taskArray)
   console.log(allNames)
-  console.log(project)
+  console.log(currentArray)
   function reviveTasks () {
-    for (let i = 0; i < allNames.length; i += 3) {
+    for (let i = 0; i < 1; i++) {
       let x = 0
       let y = 1
       let z = 2
@@ -45,16 +51,12 @@ export function setTasks () {
       taskElements(description, priority, due)
     }
   }
-  let titleDisplay = document.querySelector('#titledisplay')
-  if (titleDisplay.innerText == mainFormTitle) {
-    titleDisplay.addEventListener('click', reviveTasks)
-  }
+  reviveTasks()
 }
 
 window.addEventListener('load', function () {
   if (localStorage.getItem('projects')) {
     setStyles()
-    setTasks()
     console.log('bye')
   }
 })

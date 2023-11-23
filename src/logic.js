@@ -42,6 +42,19 @@ const mainTitle = document.querySelector('#maintitle')
 const nameForm = document.querySelector('#name_form')
 const nameSubmit = document.querySelector('#submitname')
 
+function clearAllInputs () {
+  let formInput = document.querySelector('#title')
+  formInput.value = ''
+}
+
+/* function clearAllTaskInputs () {
+  let getInputs = document.querySelectorAll('input')
+  getInputs.value = ''
+  submitProjectInfo.addEventListener('click', newTask) == false
+}
+let titleDisplay = document.querySelector('#titledisplay')
+titleDisplay.addEventListener(clearAllTaskInputs) */
+
 export function CreateNameForm (title) {
   this.title = title
 
@@ -60,7 +73,7 @@ export function CreateNameForm (title) {
     console.log(titleDisplay.innerText)
     createdProjects.appendChild(titleDisplay)
     titleDisplay.addEventListener('click', this.displayProject)
-    //titleDisplay.addEventListener('click', setTasks())
+    titleDisplay.addEventListener('click', setTasks)
     titleDisplay.addEventListener('click', this.displayMain)
   }
 }
@@ -80,17 +93,15 @@ function createProject (formTitle) {
   return { formTitle, project }
 }
 
-export let mainFormTitle = createProject.formTitle
-console.log(mainFormTitle)
-
 function preventSubmit(event) {
   let warn = "preventDefault() won't let you submit this!"
   console.log(warn)
   event.preventDefault()
 }
-nameSubmit.addEventListener('click', preventSubmit)
 
+nameSubmit.addEventListener('click', preventSubmit)
 nameSubmit.addEventListener('click', createProject)
+nameSubmit.addEventListener('click', clearAllInputs)
 
 const taskForm = document.querySelector('#task_form')
 const cancelTask = document.querySelector('#closetaskform')
@@ -167,8 +178,10 @@ for (i=0; i < headerRow.length; i++){
   deleteATButton.addEventListener('click', deleteArrayTask)
 }
 
-taskForm.addEventListener('click', preventSubmit)
-taskForm.addEventListener('submit', newTask)
+const submitProjectInfo = document.querySelector('#submitprojectinfo')
+submitProjectInfo.addEventListener('click', preventSubmit)
+submitProjectInfo.addEventListener('click', newTask)
+submitProjectInfo.addEventListener('click', clearAllInputs)
 
 const todayButton = document.querySelector('#todaybutton')
 const weekButton = document.querySelector('#weekbutton')

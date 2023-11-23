@@ -1,4 +1,4 @@
-import './style.css'
+import { setTasks } from "./storage"
 
 export function taskElements (description, priority, dayDue) {
   const deleteTask = document.createElement('button')
