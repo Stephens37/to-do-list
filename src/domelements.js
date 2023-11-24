@@ -1,9 +1,10 @@
-import { setTasks } from "./storage"
+import _ from 'date-fns'
 
 export function taskElements (description, priority, dayDue) {
   const deleteTask = document.createElement('button')
   deleteTask.setAttribute('class', 'deletetask')
   deleteTask.innerText = 'Delete'
+  console.log(deleteTask)
 
   description = document.createElement('td')
   description.setAttribute('class', 'descriptiongd')
@@ -50,10 +51,8 @@ export function taskElements (description, priority, dayDue) {
     dayDue.remove()
     editTask.remove()
   }
-
   deleteTask.addEventListener('click', removeTask)
+  const taskForm = document.querySelector('#task_form')
+  taskForm.reset()
 }
-
-
-
 /*function to add tasks to today not working because it is 'deleting' all tasks upon opening*/

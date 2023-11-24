@@ -1,5 +1,4 @@
 import './style.css'
-import './domelements.js'
 import { CreateNameForm, mainTaskArray } from './logic.js'
 import { taskElements } from './domelements.js'
 

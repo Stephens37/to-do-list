@@ -176,23 +176,50 @@ for (i=0; i < headerRow.length; i++){
   }
   const deleteATButton = document.querySelector('.deletetask')
   deleteATButton.addEventListener('click', deleteArrayTask)
+  return htmlDue
+}
+
+let dayDue = newTask.htmlDue
+
+function todayTasks () {
+  mainTitle.innerText = 'Today'
+  document.querySelector('#newtask').style.display = 'none'
+  document.querySelector('#taskinfo').style.display = 'none'
+  const todayButton = document.querySelector('#todaybutton')
+  const todayArray = []
+
+  const {format} = require('date-fns')
+  const today = format(new Date(), 'yyyy.MM.dd')
+  const description = document.querySelector('#description').value
+  const priority = document.querySelector('#priority').value
+  console.log(dayDue)
+  console.log(today)
+  if (today == dayDue) {
+    todayArray.push(description.value, priority.value, dayDue.value)
+  }
+  function todayResults () {
+    for (let i = 0; i < 1; i++) {
+      let x = 0
+      let y = 1
+      let z = 2
+      let descriptionToday = todayArray[x + i++]
+      let priorityToday = todayArray[y + i++]
+      let dueToday = todayArray[z + i++]
+      taskElements(descriptionToday, priorityToday, dueToday)
+    }
+  }
+  todayButton.addEventListener('click', todayTasks)
+  console.log(today)
 }
 
 const submitProjectInfo = document.querySelector('#submitprojectinfo')
+submitProjectInfo.addEventListener('click', todayTasks)
 submitProjectInfo.addEventListener('click', preventSubmit)
 submitProjectInfo.addEventListener('click', newTask)
 submitProjectInfo.addEventListener('click', clearAllInputs)
 
 const todayButton = document.querySelector('#todaybutton')
 const weekButton = document.querySelector('#weekbutton')
-
-function todayTasks () {
-  mainTitle.innerText = 'Today'
-  document.querySelector('#newtask').style.display = 'none'
-  document.querySelector('#taskinfo').style.display = 'none'
-}
-
-todayButton.addEventListener('click', todayTasks)
 
 function weekView () {
   mainTitle.innerText = 'This Week'
