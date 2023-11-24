@@ -1,5 +1,6 @@
 import _, { fromPairs } from 'lodash'
 import './style.css'
+import 'date-fns'
 import * as domElement from './domelements'
 import { taskElements } from './domelements'
 import { populateStorage, populateTasks, setTasks } from './storage.js'
@@ -176,27 +177,22 @@ for (i=0; i < headerRow.length; i++){
   }
   const deleteATButton = document.querySelector('.deletetask')
   deleteATButton.addEventListener('click', deleteArrayTask)
-  return htmlDue
-}
 
-let dayDue = newTask.htmlDue
-
-function todayTasks () {
-  mainTitle.innerText = 'Today'
-  document.querySelector('#newtask').style.display = 'none'
-  document.querySelector('#taskinfo').style.display = 'none'
+  // mainTitle.innerText = 'Today'
+  // document.querySelector('#newtask').style.display = 'none'
+  // document.querySelector('#taskinfo').style.display = 'none'
   const todayButton = document.querySelector('#todaybutton')
   const todayArray = []
 
-  const {format} = require('date-fns')
+  const { format } = require('date-fns')
   const today = format(new Date(), 'yyyy.MM.dd')
-  const description = document.querySelector('#description').value
-  const priority = document.querySelector('#priority').value
-  console.log(dayDue)
   console.log(today)
-  if (today == dayDue) {
-    todayArray.push(description.value, priority.value, dayDue.value)
-  }
+  let newHTMLDue = format(new Date(htmlDue), 'yyyy.MM.dd')
+  console.log(newHTMLDue)
+  if (today === newHTMLDue) {
+    todayArray.push(htmlDescription, htmlPriority, htmlDue)
+    console.log(todayArray)
+  } else return
   function todayResults () {
     for (let i = 0; i < 1; i++) {
       let x = 0
@@ -208,12 +204,11 @@ function todayTasks () {
       taskElements(descriptionToday, priorityToday, dueToday)
     }
   }
-  todayButton.addEventListener('click', todayTasks)
+  todayButton.addEventListener('click', todayResults)
   console.log(today)
 }
 
 const submitProjectInfo = document.querySelector('#submitprojectinfo')
-submitProjectInfo.addEventListener('click', todayTasks)
 submitProjectInfo.addEventListener('click', preventSubmit)
 submitProjectInfo.addEventListener('click', newTask)
 submitProjectInfo.addEventListener('click', clearAllInputs)
