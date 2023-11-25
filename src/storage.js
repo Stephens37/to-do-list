@@ -5,18 +5,14 @@ import { taskElements } from './domelements.js'
 export function populateStorage (project) {
   let stringProject = JSON.stringify(project)
   localStorage.setItem('projects', stringProject)
-  console.log(stringProject)
 }
 
 // export function populateTasks(htmlDescription, )
 
 function setStyles () {
   const currentArray = JSON.parse(localStorage.getItem('projects'))
-  console.log(currentArray)
   let project = currentArray
   const allNames = project.map(obj => obj.formTitle)
-  console.log(allNames)
-  console.log(project)
   let i = 0
   while (i < allNames.length) {
     let mainTitle = allNames[0 + i++]
@@ -36,8 +32,6 @@ function setStyles () {
 export function setTasks () {
   let currentArray = JSON.parse(localStorage.getItem('projects'))
   const allNames = currentArray.map(obj => obj.taskArray)
-  console.log(allNames)
-  console.log(currentArray)
   function reviveTasks () {
     for (let i = 0; i < 1; i++) {
       let x = 0
@@ -47,6 +41,7 @@ export function setTasks () {
       console.log(description)
       let priority = allNames[y + i++]
       let due = allNames[z + i++]
+      console.log(allNames)
       taskElements(description, priority, due)
     }
   }
@@ -56,7 +51,6 @@ export function setTasks () {
 window.addEventListener('load', function () {
   if (localStorage.getItem('projects')) {
     setStyles()
-    console.log('bye')
   }
 })
 

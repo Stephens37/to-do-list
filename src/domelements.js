@@ -4,7 +4,6 @@ export function taskElements (description, priority, dayDue) {
   const deleteTask = document.createElement('button')
   deleteTask.setAttribute('class', 'deletetask')
   deleteTask.innerText = 'Delete'
-  console.log(deleteTask)
 
   description = document.createElement('td')
   description.setAttribute('class', 'descriptiongd')
@@ -32,12 +31,10 @@ export function taskElements (description, priority, dayDue) {
   const tableRow = document.createElement('tr')
   tableRow.setAttribute('class', 'tablerow')
   tbody.append(tableRow)
-  console.log(deleteTask)
   tableRow.append(deleteTask)
 
   tableRow.appendChild(description)
 
-  console.log(priority.innerText)
   tableRow.append(priority)
 
   tableRow.append(dayDue)
@@ -53,6 +50,6 @@ export function taskElements (description, priority, dayDue) {
   }
   deleteTask.addEventListener('click', removeTask)
   const taskForm = document.querySelector('#task_form')
-  taskForm.reset()
+  // taskForm.reset()
 }
 /*function to add tasks to today not working because it is 'deleting' all tasks upon opening*/

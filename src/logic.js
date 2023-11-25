@@ -16,7 +16,6 @@ export function FormDisplay (form) {
     form.style.display = 'none'
   }
 }
-console.log(FormDisplay)
 
 function nameFormFunction () {
   function openName () {
@@ -28,7 +27,6 @@ function nameFormFunction () {
     nameClose.closeForm()
   }
   const newProjectButton = document.querySelector('#newprojectbutton')
-  console.log(document.querySelector('#newprojectbutton'))
   const close = document.querySelector('#closenameform')
   newProjectButton.addEventListener('click', openName)
   close.addEventListener('click', closeName)
@@ -71,7 +69,6 @@ export function CreateNameForm (title) {
     const titleDisplay = document.createElement('button')
     titleDisplay.setAttribute('id', 'titledisplay')
     titleDisplay.innerText = title
-    console.log(titleDisplay.innerText)
     createdProjects.appendChild(titleDisplay)
     titleDisplay.addEventListener('click', this.displayProject)
     titleDisplay.addEventListener('click', setTasks)
@@ -85,11 +82,9 @@ export let mainTaskArray = []
 
 function createProject (formTitle) {
   formTitle = document.querySelector('#title').value
-  console.log(formTitle)
   const newNameForm = new CreateNameForm(formTitle)
   newNameForm.submitName()
   project.push({ formTitle })
-  console.log(project)
   populateStorage(project)
   return { formTitle, project }
 }
@@ -145,43 +140,35 @@ function newTask () {
   task.sayTask()
   console.log(task)
 
-
-  //want to push tasks to the end of the projecttitle in the array
   taskElements(htmlDescription, htmlPriority, htmlDue)
-  /* var x = document.getElementById('x')
-var theDiv = x.innerHTML.trim();
-for (i=0; i < headerRow.length; i++){
-    if (headerRow[i] == theDiv) {
-              // your codes goes here
-              console.log('works')
-    }
-} */
+
   let projectMainTitle = document.querySelector('#maintitle')
   let mainTitleTrim = projectMainTitle.innerText.trim()
   for (let i = 0; i < project.length; i++) {
     let projectTitle = project[i].formTitle
-    console.log(projectTitle)
     let projectIndex = project[i]
     if (projectTitle == mainTitleTrim && projectIndex.taskArray == undefined) {
-      console.log(projectIndex)
-      console.log(mainTaskArray)
       projectIndex.taskArray = mainTaskArray
-      console.log(projectIndex)
     }
     populateStorage(project)
   }
-  console.log(project)
   function deleteArrayTask () {
     mainTaskArray.splice(this.htmlDescription, 3)
     populateStorage(project)
   }
   const deleteATButton = document.querySelector('.deletetask')
   deleteATButton.addEventListener('click', deleteArrayTask)
+}
+
+const submitProjectInfo = document.querySelector('#submitprojectinfo')
+submitProjectInfo.addEventListener('click', preventSubmit)
+submitProjectInfo.addEventListener('click', newTask)
+submitProjectInfo.addEventListener('click', clearAllInputs)
 
   // mainTitle.innerText = 'Today'
   // document.querySelector('#newtask').style.display = 'none'
   // document.querySelector('#taskinfo').style.display = 'none'
-  const todayButton = document.querySelector('#todaybutton')
+  /* const todayButton = document.querySelector('#todaybutton')
   const todayArray = []
 
   const { format } = require('date-fns')
@@ -223,3 +210,4 @@ function weekView () {
 }
 
 weekButton.addEventListener('click', weekView)
+*/
