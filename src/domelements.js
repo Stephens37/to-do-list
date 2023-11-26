@@ -1,9 +1,11 @@
 import _ from 'date-fns'
+import { newTask } from './logic.js'
 
 export function taskElements (descriptionText, priorityText, dayDueText) {
   const deleteTask = document.createElement('button')
-  deleteTask.setAttribute('class', 'deletetask')
+  deleteTask.setAttribute('id', 'deletetask')
   deleteTask.innerText = 'Delete'
+  deleteTask.addEventListener('click', newTask.deleteArrayTask)
 
   let description = document.createElement('td')
   description.setAttribute('class', 'descriptiongd')

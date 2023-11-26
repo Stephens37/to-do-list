@@ -126,7 +126,7 @@ export class Task {
   }
 }
 
-function newTask () {
+export function newTask () {
   const htmlDescription = document.getElementById('description').value
 
   const htmlPriority = document.getElementById('priority').value
@@ -155,9 +155,8 @@ function newTask () {
     mainTaskArray.splice(this.htmlDescription, 3)
     populateStorage(project)
   }
-  const deleteATButton = document.querySelector('.deletetask')
-  deleteATButton.addEventListener('click', deleteArrayTask)
-}
+  /* const deleteATButton = document.querySelector('#deletetask')
+  deleteATButton.addEventListener('click', deleteArrayTask) */
 
 const submitProjectInfo = document.querySelector('#submitprojectinfo')
 submitProjectInfo.addEventListener('click', preventSubmit)
@@ -167,7 +166,7 @@ submitProjectInfo.addEventListener('click', clearAllInputs)
   // mainTitle.innerText = 'Today'
   // document.querySelector('#newtask').style.display = 'none'
   // document.querySelector('#taskinfo').style.display = 'none'
-  /* const todayButton = document.querySelector('#todaybutton')
+  const todayButton = document.querySelector('#todaybutton')
   const todayArray = []
 
   const { format } = require('date-fns')
@@ -178,7 +177,7 @@ submitProjectInfo.addEventListener('click', clearAllInputs)
   if (today === newHTMLDue) {
     todayArray.push(htmlDescription, htmlPriority, htmlDue)
     console.log(todayArray)
-  } else return
+  }
   function todayResults () {
     for (let i = 0; i < 1; i++) {
       let x = 0
@@ -192,14 +191,8 @@ submitProjectInfo.addEventListener('click', clearAllInputs)
   }
   todayButton.addEventListener('click', todayResults)
   console.log(today)
-}
 
-const submitProjectInfo = document.querySelector('#submitprojectinfo')
-submitProjectInfo.addEventListener('click', preventSubmit)
-submitProjectInfo.addEventListener('click', newTask)
-submitProjectInfo.addEventListener('click', clearAllInputs)
 
-const todayButton = document.querySelector('#todaybutton')
 const weekButton = document.querySelector('#weekbutton')
 
 function weekView () {
@@ -209,4 +202,6 @@ function weekView () {
 }
 
 weekButton.addEventListener('click', weekView)
-*/
+return { deleteArrayTask }
+}
+
