@@ -1,5 +1,4 @@
 import _, { fromPairs } from 'lodash'
-import './style.css'
 import 'date-fns'
 import * as domElement from './domelements'
 import { taskElements } from './domelements'

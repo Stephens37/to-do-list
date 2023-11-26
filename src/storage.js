@@ -1,10 +1,10 @@
-import './style.css'
-import { CreateNameForm, mainTaskArray } from './logic.js'
+import { CreateNameForm, mainTaskArray, project } from './logic.js'
 import { taskElements } from './domelements.js'
 
 export function populateStorage (project) {
   let stringProject = JSON.stringify(project)
   localStorage.setItem('projects', stringProject)
+  console.log(project)
 }
 
 // export function populateTasks(htmlDescription, )
@@ -31,17 +31,31 @@ function setStyles () {
 
 export function setTasks () {
   let currentArray = JSON.parse(localStorage.getItem('projects'))
-  const allNames = currentArray.map(obj => obj.taskArray)
+  console.log(currentArray)
+  const allTasks = currentArray.map(obj => obj.taskArray)
+  console.log(allTasks)
+  const allArrayTasks = allTasks.flat()
+    console.log(allArrayTasks.length)
   function reviveTasks () {
-    for (let i = 0; i < 1; i++) {
-      let x = 0
-      let y = 1
-      let z = 2
-      let description = allNames[x + i++]
+    for (let i = 0; i < allArrayTasks.length; i += 3) {
+      let x = i
+      let y = i + 1
+      let z = i + 2
+      let description = allArrayTasks[x]
       console.log(description)
-      let priority = allNames[y + i++]
-      let due = allNames[z + i++]
-      console.log(allNames)
+      let priority = allArrayTasks[y]
+      console.log(priority)
+      console.log(allArrayTasks[y])
+      let due = allArrayTasks[z]
+      console.log(due)
+      console.log(allTasks)
+      console.log(`x: ${x}, y: ${y}, z: ${z}`);
+      console.log(`Description: ${allArrayTasks[x]}`);
+      console.log(`Priority: ${allArrayTasks[y]}`);
+      console.log(`Due: ${allArrayTasks[z]}`);
+      if (taskElements !== undefined) {
+        console.log('hello')
+      }
       taskElements(description, priority, due)
     }
   }
