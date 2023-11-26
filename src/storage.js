@@ -35,13 +35,14 @@ export function setTasks () {
   const allTasks = currentArray.map(obj => obj.taskArray)
   console.log(allTasks)
   const allArrayTasks = allTasks.flat()
-    console.log(allArrayTasks.length)
+  console.log(allArrayTasks.length)
   function reviveTasks () {
     for (let i = 0; i < allArrayTasks.length; i += 3) {
       let x = i
       let y = i + 1
       let z = i + 2
-      let description = allArrayTasks[x]
+      console.log(allArrayTasks)
+      /* let description = allArrayTasks[x]
       console.log(description)
       let priority = allArrayTasks[y]
       console.log(priority)
@@ -55,8 +56,8 @@ export function setTasks () {
       console.log(`Due: ${allArrayTasks[z]}`);
       if (taskElements !== undefined) {
         console.log('hello')
-      }
-      taskElements(description, priority, due)
+      } */
+      taskElements(`${allArrayTasks[x]}`, `${allArrayTasks[y]}`, `${allArrayTasks[z]}`)
     }
   }
   reviveTasks()

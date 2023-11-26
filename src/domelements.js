@@ -1,25 +1,23 @@
 import _ from 'date-fns'
 
-export function taskElements (description, priority, dayDue) {
+export function taskElements (descriptionText, priorityText, dayDueText) {
   const deleteTask = document.createElement('button')
   deleteTask.setAttribute('class', 'deletetask')
   deleteTask.innerText = 'Delete'
 
-  description = document.createElement('td')
+  let description = document.createElement('td')
   description.setAttribute('class', 'descriptiongd')
-  description.innerText = document.querySelector('#description').value
+  description.innerText = descriptionText
 
-  priority = document.createElement('td')
+  let priority = document.createElement('td')
   priority.setAttribute('class', 'prioritygd')
   priority.innerText = ''
 
-  const priorityOptions = document.querySelector('#priority')
-  priority.innerText = priorityOptions.options[priorityOptions.selectedIndex].text
+  priority.innerText = priorityText
 
-  dayDue = document.createElement('td')
+  let dayDue = document.createElement('td')
   dayDue.setAttribute('class', 'daydue')
-  let dayResult = document.querySelector('#duedate').value
-  dayDue.innerText = dayResult
+  dayDue.innerText = dayDueText
 
   const editTask = document.createElement('button')
   editTask.setAttribute('class', 'edittask')
@@ -27,11 +25,14 @@ export function taskElements (description, priority, dayDue) {
   
   let titleDisplay = document.querySelector('#titledisplay')
 
-  const tbody = document.querySelector('#tbody')
+  const tbody = document.querySelector('tbody')
   const tableRow = document.createElement('tr')
+  if (tbody.children.length === 0) {
+    return
+  }
   tableRow.setAttribute('class', 'tablerow')
-  tbody.append(tableRow)
-  tableRow.append(deleteTask)
+  tbody.appendChild(tableRow)
+  tableRow.appendChild(deleteTask)
 
   tableRow.appendChild(description)
 
@@ -49,7 +50,7 @@ export function taskElements (description, priority, dayDue) {
     editTask.remove()
   }
   deleteTask.addEventListener('click', removeTask)
-  // const taskForm = document.querySelector('#task_form')
-  // taskForm.reset()
+  const taskForm = document.querySelector('#task_form')
+  taskForm.reset()
 }
 
