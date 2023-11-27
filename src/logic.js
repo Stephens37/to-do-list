@@ -1,8 +1,7 @@
 import _, { fromPairs } from 'lodash'
 import 'date-fns'
-import * as domElement from './domelements'
-import { taskElements } from './domelements'
-import { populateStorage, populateTasks, setTasks } from './storage.js'
+import { taskElements, deleteTask } from './domelements'
+import { populateStorage, setTasks } from './storage.js'
 
 export function FormDisplay (form) {
   this.form = form
@@ -126,7 +125,7 @@ export class Task {
   }
 }
 
-function newTask () {
+export function newTask () {
   const htmlDescription = document.getElementById('description').value
 
   const htmlPriority = document.getElementById('priority').value
@@ -155,51 +154,81 @@ function newTask () {
     mainTaskArray.splice(this.htmlDescription, 3)
     populateStorage(project)
   }
-  const deleteATButton = document.querySelector('.deletetask')
-  deleteATButton.addEventListener('click', deleteArrayTask)
+  deleteTask.addEventListener('click', deleteArrayTask)
+
+  console.log(htmlDue)
+  const htmlStringDue = htmlDue.toString()
+  console.log(htmlStringDue)
+  const { format } = require('date-fns')
+  const htmlDueDate = format(new Date(htmlStringDue), 'yyyy.MM.dd')
+  console.log(htmlDueDate)
+
+  const todayArray = []
+
+  const today = format(new Date(), 'yyyy.MM.dd')
+  console.log(today)
+  // let newHTMLDue = format(new Date(htmlDue), 'yyyy.MM.dd')
+  // console.log(newHTMLDue)
+  if (today === htmlDueDate) {
+    todayArray.push(htmlDescription, htmlPriority, htmlDue)
+    console.log(todayArray)
+    console.log('hello')
+  }
+  return todayArray
 }
 
 const submitProjectInfo = document.querySelector('#submitprojectinfo')
 submitProjectInfo.addEventListener('click', preventSubmit)
 submitProjectInfo.addEventListener('click', newTask)
 submitProjectInfo.addEventListener('click', clearAllInputs)
-
+/* function todayTasks () {
   // mainTitle.innerText = 'Today'
   // document.querySelector('#newtask').style.display = 'none'
   // document.querySelector('#taskinfo').style.display = 'none'
-  /* const todayButton = document.querySelector('#todaybutton')
+
+  console.log(htmlDue)
+  const htmlStringDue = htmlDue.toString()
+  console.log(htmlStringDue)
+  const htmlDueDate = new Date(htmlStringDue)
+  console.log(htmlDueDate)
+  console.log(typeof htmlDues)
+
   const todayArray = []
 
   const { format } = require('date-fns')
   const today = format(new Date(), 'yyyy.MM.dd')
   console.log(today)
-  let newHTMLDue = format(new Date(htmlDue), 'yyyy.MM.dd')
-  console.log(newHTMLDue)
-  if (today === newHTMLDue) {
+  // let newHTMLDue = format(new Date(htmlDue), 'yyyy.MM.dd')
+  // console.log(newHTMLDue)
+  if (today === htmlDueDate) {
     todayArray.push(htmlDescription, htmlPriority, htmlDue)
     console.log(todayArray)
-  } else return
-  function todayResults () {
-    for (let i = 0; i < 1; i++) {
-      let x = 0
-      let y = 1
-      let z = 2
-      let descriptionToday = todayArray[x + i++]
-      let priorityToday = todayArray[y + i++]
-      let dueToday = todayArray[z + i++]
-      taskElements(descriptionToday, priorityToday, dueToday)
-    }
+    console.log('hello')
   }
-  todayButton.addEventListener('click', todayResults)
-  console.log(today)
+  return todayArray
+} */
+
+// submitProjectInfo.addEventListener('click', todayTasks)
+const todaySArray = newTask.todayArray
+console.log(todaySArray)
+
+function todayButtonClicked () {
+  const thisDayArray = todaySArray
+  for (let i = 0; i < 1; i++) {
+    let x = 0
+    let y = 1
+    let z = 2
+    let descriptionToday = thisDayArray[x + i++]
+    let priorityToday = thisDayArray[y + i++]
+    let dueToday = thisDayArray[z + i++]
+    taskElements(descriptionToday, priorityToday, dueToday)
+  }
 }
 
-const submitProjectInfo = document.querySelector('#submitprojectinfo')
-submitProjectInfo.addEventListener('click', preventSubmit)
-submitProjectInfo.addEventListener('click', newTask)
-submitProjectInfo.addEventListener('click', clearAllInputs)
-
 const todayButton = document.querySelector('#todaybutton')
+todayButton.addEventListener('click', todayButtonClicked)
+
+
 const weekButton = document.querySelector('#weekbutton')
 
 function weekView () {
@@ -209,4 +238,3 @@ function weekView () {
 }
 
 weekButton.addEventListener('click', weekView)
-*/

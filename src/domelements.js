@@ -1,10 +1,10 @@
 import _ from 'date-fns'
 
-export function taskElements (descriptionText, priorityText, dayDueText) {
-  const deleteTask = document.createElement('button')
-  deleteTask.setAttribute('class', 'deletetask')
-  deleteTask.innerText = 'Delete'
+export const deleteTask = document.createElement('button')
+deleteTask.setAttribute('id', 'deletetask')
+deleteTask.innerText = 'Delete'
 
+export function taskElements (descriptionText, priorityText, dayDueText) {
   let description = document.createElement('td')
   description.setAttribute('class', 'descriptiongd')
   description.innerText = descriptionText
@@ -27,9 +27,9 @@ export function taskElements (descriptionText, priorityText, dayDueText) {
 
   const tbody = document.querySelector('tbody')
   const tableRow = document.createElement('tr')
-  if (tbody.children.length === 0) {
+  /* if (tbody.children.length === 0) {
     return
-  }
+  } */
   tableRow.setAttribute('class', 'tablerow')
   tbody.appendChild(tableRow)
   tableRow.appendChild(deleteTask)
