@@ -22,7 +22,7 @@ export function taskElements (descriptionText, priorityText, dayDueText) {
   const editTask = document.createElement('button')
   editTask.setAttribute('class', 'edittask')
   editTask.innerText = 'Edit Task'
-  
+
   let titleDisplay = document.querySelector('#titledisplay')
 
   const tbody = document.querySelector('tbody')
@@ -53,4 +53,3 @@ export function taskElements (descriptionText, priorityText, dayDueText) {
   const taskForm = document.querySelector('#task_form')
   taskForm.reset()
 }
-
